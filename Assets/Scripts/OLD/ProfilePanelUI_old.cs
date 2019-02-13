@@ -19,9 +19,9 @@ public class ProfilePanelUI_old : MonoBehaviour
 
     private void Start()
     {
-        _levelController.Setup(LevelManager.Instance.LevelRaw);
-        _levelHighlightController.Setup(LevelManager.Instance.LevelRaw);
-        _levelIconController.Setup(LevelManager.Instance.LevelRaw, null);
-        _levelFullController.Setup(LevelManager.Instance.LevelRaw, null);
+        _levelController.Setup(LevelManager.Instance.LevelRaw, LevelManager.Instance.MaxLevelRaw);
+        _levelHighlightController.Setup(LevelManager.Instance.LevelRaw, LevelManager.Instance.MaxLevelRaw);
+        _levelIconController.Setup(LevelManager.Instance.LevelRaw, LevelManager.Instance.MaxLevelRaw, null);
+        _levelFullController.Setup(LevelManager.Instance.LevelRaw, LevelManager.Instance.MaxLevelRaw, null);
     }
 }

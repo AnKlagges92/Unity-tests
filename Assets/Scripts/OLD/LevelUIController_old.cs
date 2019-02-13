@@ -5,45 +5,87 @@ using UnityEngine.UI;
 
 namespace UI_old
 {
+    public enum ELevelFormat
+    {
+        Level,
+        Full
+    }
+
     public class LevelUIController_old : MonoBehaviour
     {
-        [SerializeField]
-        private Text _levelText;
+        [SerializeField] private Text _levelText;
 
-        private int _level;
+        [SerializeField] private ELevelFormat format = ELevelFormat.Level;
+
+        private Observable<int> _level;
+        private Observable<int> _maxLevel;
+
+        #region Getter & Setters
 
         public int Level
         {
-            set
-            {
-                if (_level != value)
-                {
-                    _level = value;
-                    OnLevelChange(value); //TODO: SafeInvoke
-                }
-            }
-            get { return _level; }
+            get { return _level.Value; }
+            set { _level.Value = value; }
         }
 
-        public void Setup(Observable<int> level = null)
+        public int MaxLevel
+        {
+            get { return _maxLevel.Value; }
+            set { _maxLevel.Value = value; }
+        }
+
+        #endregion
+
+        public void Setup(Observable<int> level)
         {
             if (level != null)
             {
-                Level = level.Value;
-                level.OnValueChange += OnLevelChange;
+                _level = level;
+                _level.OnValueChange += OnLevelChange;
             }
+
+            UpdateLevelText();
+        }
+
+        public void Setup(Observable<int> level, Observable<int> maxLevel)
+        {
+            if (level != null)
+            {
+                _level = level;
+                _level.OnValueChange += OnLevelChange;
+            }
+
+            if (maxLevel != null)
+            {
+                _maxLevel = maxLevel;
+                _maxLevel.OnValueChange += OnMaxLevelChange;
+            }
+
+            UpdateLevelText();
         }
 
         private void OnLevelChange(int level)
         {
-            UpdateUI();
+            UpdateLevelText();
         }
 
-        private void UpdateUI()
+        private void OnMaxLevelChange(int level)
+        {
+            UpdateLevelText();
+        }
+
+        private void UpdateLevelText()
         {
             if (_levelText != null)
             {
-                _levelText.text = _level.ToString();
+                if (format == ELevelFormat.Level)
+                {
+                    _levelText.text = Level.ToString();
+                }
+                else
+                {
+                    _levelText.text = Level + "/" + MaxLevel;
+                }
             }
         }
     }

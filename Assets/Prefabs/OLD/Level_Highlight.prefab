@@ -87,6 +87,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _levelText: {fileID: 8769860007858038685}
+  format: 1
   _highlight: {fileID: 5037420992768316784}
 --- !u!1001 &7463617620138584771
 PrefabInstance:

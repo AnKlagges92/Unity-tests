@@ -161,6 +161,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _levelText: {fileID: 8445219005744188098}
+  format: 1
   _highlight: {fileID: 7143116371721285026}
   _icon: {fileID: 5249287994393668252}
 --- !u!1001 &7715691357464823708
