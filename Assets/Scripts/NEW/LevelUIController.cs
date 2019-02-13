@@ -10,6 +10,9 @@ namespace UI
         Full
     }
 
+    /// <summary>
+    /// THIS IS AN EXAMPLE OF A SPECIFIC UI PART
+    /// </summary>
     [Serializable]
     public class LevelTextsUIPart : TextUIPart
     {
@@ -30,33 +33,23 @@ namespace UI
 
     #endregion
 
-    public class LevelUIController : BaseUIController<LevelUIController.Parts>
+    /// <summary>
+    /// THIS IS AN EXAMPLE OF A SPECIFIC UI CONTROLLER
+    /// </summary>
+    public partial class LevelUIController : BaseUIController<LevelUIController.Parts>
     {
-        public class Parts : BaseParts
+        public partial class Parts : BaseParts
         {
             public LevelTextsUIPart LevelText;
             public TextUIPart OtherText;
             public ImageUIPart Icon;
             public GameObjectUIPart Highlight;
 
-            /// <summary>
-            /// Full Constructor
-            /// </summary>
             public Parts(LevelTextsUIPart levelText, TextUIPart otherText, ImageUIPart icon, GameObjectUIPart highlight = null)
             {
                 LevelText = NullCheck(levelText);
                 OtherText = NullCheck(otherText);
                 Icon = NullCheck(icon);
-                Highlight = highlight;
-            }
-
-            /// <summary>
-            /// No Icon Constructor
-            /// </summary>
-            public Parts(LevelTextsUIPart levelText, TextUIPart otherText, GameObjectUIPart highlight = null)
-            {
-                LevelText = NullCheck(levelText);
-                OtherText = NullCheck(otherText);
                 Highlight = highlight;
             }
         }

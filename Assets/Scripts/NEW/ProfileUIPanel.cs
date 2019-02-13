@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UI;
 
+/// <summary>
+/// THIS IS AN EXAMPLE OF A UI PANEL
+/// </summary>
 public class ProfileUIPanel : MonoBehaviour
 {
     [Header("Level Parts")]
@@ -12,14 +15,10 @@ public class ProfileUIPanel : MonoBehaviour
     [SerializeField] private ImageUIPart _levelIcon;
 
     private LevelUIController _levelController;
-    private LevelUIController _noIconLevelController;
 
     private void Start()
     {
         var levelParts = new LevelUIController.Parts(_levelText, _otherText, null, _levelHighlight);
         _levelController = new LevelUIController(levelParts, LevelManager.Instance.LevelRaw, LevelManager.Instance.MaxLevelRaw);
-
-        var noIconLevelParts = new LevelUIController.Parts(_levelText, _otherText, _levelHighlight);
-        _noIconLevelController = new LevelUIController(noIconLevelParts, LevelManager.Instance.LevelRaw, LevelManager.Instance.MaxLevelRaw);
     }
 }

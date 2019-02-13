@@ -6,6 +6,10 @@ using UnityEngine.UI;
 
 namespace UI
 {
+    /// <summary>
+    /// The UI Parts handle UI components.
+    /// This class are semi-stateless, only the components can change.
+    /// </summary>
     public abstract class BaseUIPart
     {
         protected void SafeAction<T>(T component, Action callback)
