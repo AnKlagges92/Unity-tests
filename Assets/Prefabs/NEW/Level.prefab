@@ -52,7 +52,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _levelText:
     text: {fileID: 2162616059324038529}
-    format: 1
+    format: 0
 --- !u!1 &4538685186938353096
 GameObject:
   m_ObjectHideFlags: 0

@@ -10,7 +10,6 @@ public class ProfileUIPanel : MonoBehaviour
 {
     [Header("Level Parts")]
     [SerializeField] private LevelTextsUIPart _levelText;
-    [SerializeField] private TextUIPart _otherText;
     [SerializeField] private GameObjectUIPart _levelHighlight;
     [SerializeField] private ImageUIPart _levelIcon;
 
@@ -18,7 +17,7 @@ public class ProfileUIPanel : MonoBehaviour
 
     private void Start()
     {
-        var levelParts = new LevelUIController.Parts(_levelText, _otherText, null, _levelHighlight);
+        var levelParts = new LevelUIController.Parts(_levelText, null, _levelHighlight);
         _levelController = new LevelUIController(levelParts, LevelManager.Instance.LevelRaw, LevelManager.Instance.MaxLevelRaw);
     }
 }

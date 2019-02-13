@@ -23,8 +23,12 @@ namespace UI
 
         protected void Start()
         {
-            var levelParts = new LevelUIController.Parts(_levelText);
-            _levelController = new LevelUIController(levelParts, LevelManager.Instance.LevelRaw, LevelManager.Instance.MaxLevelRaw);
+            _levelController = new LevelUIController(GetParts(), LevelManager.Instance.LevelRaw, LevelManager.Instance.MaxLevelRaw);
+        }
+
+        public virtual LevelUIController.Parts GetParts()
+        {
+            return new LevelUIController.Parts(_levelText);
         }
     }
 }

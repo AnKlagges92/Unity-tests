@@ -41,14 +41,12 @@ namespace UI
         public partial class Parts : BaseParts
         {
             public LevelTextsUIPart LevelText;
-            public TextUIPart OtherText;
             public ImageUIPart Icon;
             public GameObjectUIPart Highlight;
 
-            public Parts(LevelTextsUIPart levelText, TextUIPart otherText, ImageUIPart icon, GameObjectUIPart highlight = null)
+            public Parts(LevelTextsUIPart levelText, ImageUIPart icon, GameObjectUIPart highlight = null)
             {
                 LevelText = NullCheck(levelText);
-                OtherText = NullCheck(otherText);
                 Icon = NullCheck(icon);
                 Highlight = highlight;
             }
