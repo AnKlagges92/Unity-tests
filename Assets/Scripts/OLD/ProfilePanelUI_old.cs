@@ -9,15 +9,19 @@ public class ProfilePanelUI_old : MonoBehaviour
     private LevelUIController_old _levelController;
 
     [SerializeField]
-    private LevelDisplayUIController_old _levelDisplayController;
+    private LevelUIController_Highlight_old _levelHighlightController;
 
     [SerializeField]
-    private LevelDisplayFullUIController_old _levelDisplayFullController;
+    private LevelUIController_Icon_old _levelIconController;
+
+    [SerializeField]
+    private LevelUIController_Full_old _levelFullController;
 
     private void Start()
     {
         _levelController.Setup(LevelManager.Instance.LevelRaw);
-        _levelDisplayController.Setup(LevelManager.Instance.LevelRaw, null);
-        _levelDisplayFullController.Setup(LevelManager.Instance.LevelRaw, null);
+        _levelHighlightController.Setup(LevelManager.Instance.LevelRaw);
+        _levelIconController.Setup(LevelManager.Instance.LevelRaw, null);
+        _levelFullController.Setup(LevelManager.Instance.LevelRaw, null);
     }
 }

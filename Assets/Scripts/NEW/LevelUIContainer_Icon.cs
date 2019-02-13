@@ -16,7 +16,7 @@ namespace UI
         }
     }
 
-    public class LevelUIContainer_Icon : LevelUIContainer_Base
+    public class LevelUIContainer_Icon : LevelUIContainer_Text
     {
         [SerializeField] private ImageUIPart _icon;
 

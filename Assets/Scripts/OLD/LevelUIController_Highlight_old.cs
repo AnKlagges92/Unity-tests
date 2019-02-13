@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 namespace UI_old
 {
-    public class LevelDisplayFullUIController_old : LevelDisplayUIController_old
+    public class LevelUIController_Highlight_old : LevelUIController_old
     {
         [SerializeField]
         private GameObject _highlight;

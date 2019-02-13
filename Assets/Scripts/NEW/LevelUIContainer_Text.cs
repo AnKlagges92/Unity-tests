@@ -15,7 +15,7 @@ namespace UI
         }
     }
 
-    public class LevelUIContainer_Base : MonoBehaviour
+    public class LevelUIContainer_Text : BaseLevelUIContainer
     {
         [SerializeField] protected LevelTextsUIPart _levelText;
 
@@ -26,7 +26,7 @@ namespace UI
             _levelController = new LevelUIController(GetParts(), LevelManager.Instance.LevelRaw, LevelManager.Instance.MaxLevelRaw);
         }
 
-        public virtual LevelUIController.Parts GetParts()
+        public override LevelUIController.Parts GetParts()
         {
             return new LevelUIController.Parts(_levelText);
         }

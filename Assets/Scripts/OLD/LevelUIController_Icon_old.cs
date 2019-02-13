@@ -5,17 +5,17 @@ using UnityEngine.UI;
 
 namespace UI_old
 {
-    public class LevelDisplayUIController_old : LevelUIController_old
+    public class LevelUIController_Icon_old : LevelUIController_old
     {
         [SerializeField]
-        private Image _levelIcon;
+        private Image _icon;
 
         public void Setup(Observable<int> level = null, Sprite icon = null)
         {
             base.Setup(level);
-            if (_levelIcon != null)
+            if (_icon != null)
             {
-                _levelIcon.sprite = icon;
+                _icon.sprite = icon;
             }
         }
     }

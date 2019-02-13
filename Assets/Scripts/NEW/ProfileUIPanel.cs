@@ -8,6 +8,11 @@ using UI;
 /// </summary>
 public class ProfileUIPanel : MonoBehaviour
 {
+    [SerializeField] private LevelUIContainer_Text _levelTextContainer;
+    [SerializeField] private LevelUIContainer_Icon _levelIconContainer;
+    [SerializeField] private LevelUIContainer_Highlight _levelHighlightContainer;
+    [SerializeField] private LevelUIContainer_Full _levelFullContainer;
+
     [Header("Level Parts")]
     [SerializeField] private LevelTextsUIPart _levelText;
     [SerializeField] private GameObjectUIPart _levelHighlight;

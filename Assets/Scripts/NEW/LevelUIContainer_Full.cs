@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace UI
 {
-    public class LevelUIContainer_Full : LevelUIContainer_Base
+    public class LevelUIContainer_Full : LevelUIContainer_Text
     {
         [SerializeField] private GameObjectUIPart _highlight;
         [SerializeField] private ImageUIPart _icon;

@@ -16,7 +16,7 @@ namespace UI
         }
     }
 
-    public class LevelUIContainer_Highlight : LevelUIContainer_Base
+    public class LevelUIContainer_Highlight : LevelUIContainer_Text
     {
         [SerializeField] private GameObjectUIPart _highlight;
 
