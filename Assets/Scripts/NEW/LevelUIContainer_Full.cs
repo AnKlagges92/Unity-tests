@@ -4,6 +4,11 @@ using UnityEngine;
 
 namespace UI
 {
+    /// <summary>
+    /// [EXAMPLE]
+    /// This is a container
+    /// [EXAMPLE]
+    /// </summary>
     public class LevelUIContainer_Full : LevelUIContainer_Text
     {
         [SerializeField] private GameObjectUIPart _highlight;

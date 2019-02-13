@@ -4,6 +4,11 @@ using UnityEngine;
 
 namespace UI
 {
+    /// <summary>
+    /// [EXAMPLE]
+    /// This is an OPTIONAL extension
+    /// [EXAMPLE]
+    /// </summary>
     public partial class LevelUIController : BaseUIController<LevelUIController.Parts>
     {
         public partial class Parts : BaseParts
@@ -15,6 +20,11 @@ namespace UI
         }
     }
 
+    /// <summary>
+    /// [EXAMPLE]
+    /// This is a container
+    /// [EXAMPLE]
+    /// </summary>
     public class LevelUIContainer_Text : BaseLevelUIContainer
     {
         [SerializeField] protected LevelTextsUIPart _levelText;

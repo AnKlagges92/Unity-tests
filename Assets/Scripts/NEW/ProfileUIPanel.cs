@@ -4,7 +4,10 @@ using UnityEngine;
 using UI;
 
 /// <summary>
-/// THIS IS AN EXAMPLE OF A UI PANEL
+/// [Example]
+/// This is a panel that shows the level
+/// It contains references to several alternatives
+/// [Example]
 /// </summary>
 public class ProfileUIPanel : MonoBehaviour
 {

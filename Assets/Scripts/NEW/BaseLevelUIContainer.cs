@@ -4,6 +4,11 @@ using UnityEngine;
 
 namespace UI
 {
+    /// <summary>
+    /// [EXAMPLE]
+    /// This is an OPTIONAL BASE container
+    /// [EXAMPLE]
+    /// </summary>
     public abstract class BaseLevelUIContainer : MonoBehaviour
     {
         protected LevelUIController _levelController;

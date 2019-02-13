@@ -11,7 +11,9 @@ namespace UI
     }
 
     /// <summary>
-    /// THIS IS AN EXAMPLE OF A SPECIFIC UI PART
+    /// [EXAMPLE]
+    /// This is a SPECIFIC part
+    /// [EXAMPLE]
     /// </summary>
     [Serializable]
     public class LevelTextsUIPart : TextUIPart
@@ -34,7 +36,9 @@ namespace UI
     #endregion
 
     /// <summary>
-    /// THIS IS AN EXAMPLE OF A SPECIFIC UI CONTROLLER
+    /// [EXAMPLE]
+    /// This is a SPECIFIC controller that handles the concept: LEVEL
+    /// [EXAMPLE]
     /// </summary>
     public partial class LevelUIController : BaseUIController<LevelUIController.Parts>
     {
