@@ -846,7 +846,7 @@ PrefabInstance:
     - target: {fileID: 7358921714713912383, guid: 0c69676f4a9c11e4eb4ff3e2e7bd54e8,
         type: 3}
       propertyPath: m_Name
-      value: Level_Icon
+      value: Level_Icon_Text
       objectReference: {fileID: 0}
     - target: {fileID: 7358921714713912383, guid: 0c69676f4a9c11e4eb4ff3e2e7bd54e8,
         type: 3}
@@ -966,6 +966,18 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 575894099}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &575894101 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4229706807361959872, guid: 0c69676f4a9c11e4eb4ff3e2e7bd54e8,
+    type: 3}
+  m_PrefabInstance: {fileID: 575894099}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 511960988f83ec046be6e6c2b2966c45, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &721984021
 GameObject:
   m_ObjectHideFlags: 0
@@ -1447,7 +1459,7 @@ PrefabInstance:
     - target: {fileID: 272345371396710574, guid: c221b7aff0ca68e4cb31a4e340b49f92,
         type: 3}
       propertyPath: m_Name
-      value: Level_Highlight
+      value: Level_Highlight_Text
       objectReference: {fileID: 0}
     - target: {fileID: 272345371396710574, guid: c221b7aff0ca68e4cb31a4e340b49f92,
         type: 3}
@@ -1567,6 +1579,18 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 1034183992}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1034183994 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6784644461147685422, guid: c221b7aff0ca68e4cb31a4e340b49f92,
+    type: 3}
+  m_PrefabInstance: {fileID: 1034183992}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed599ab182da85a49b30fd00eee86675, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1044744455
 GameObject:
   m_ObjectHideFlags: 0
@@ -1741,18 +1765,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
---- !u!114 &1200455948 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1497367755627475334, guid: 0c69676f4a9c11e4eb4ff3e2e7bd54e8,
-    type: 3}
-  m_PrefabInstance: {fileID: 575894099}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d118045b08387cd4c809922cd9db2529, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1207020508
 GameObject:
   m_ObjectHideFlags: 0
@@ -1832,18 +1844,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1207020508}
   m_CullTransparentMesh: 0
---- !u!114 &1271046340 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7049632363505807573, guid: c221b7aff0ca68e4cb31a4e340b49f92,
-    type: 3}
-  m_PrefabInstance: {fileID: 1034183992}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fd0975899e07ebc40a7ab0a5a4c84076, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1279570922
 GameObject:
   m_ObjectHideFlags: 0
@@ -2282,15 +2282,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _levelTextContainer: {fileID: 1573019168}
-  _levelIconContainer: {fileID: 1200455948}
-  _levelIconTextContainer: {fileID: 0}
-  _levelHighlightContainer: {fileID: 1271046340}
-  _levelHighlightTextContainer: {fileID: 0}
+  _levelIconContainer: {fileID: 0}
+  _levelIconTextContainer: {fileID: 575894101}
+  _levelHighlightContainer: {fileID: 0}
+  _levelHighlightTextContainer: {fileID: 1034183994}
   _levelHighlightIconContainer: {fileID: 0}
   _levelFullContainer: {fileID: 865796080}
   _levelText:
     text: {fileID: 1207020510}
-    format: 1
+    _format: 0
   _levelHighlight:
     gameObject: {fileID: 565754012}
   _levelIcon:

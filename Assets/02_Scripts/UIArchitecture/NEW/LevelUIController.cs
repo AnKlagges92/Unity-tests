@@ -29,7 +29,7 @@ namespace UI
             }
             else
             {
-                SetText(level + "-" + maxLevel);
+                SetText(level + " /" + maxLevel);
             }
         }
     }

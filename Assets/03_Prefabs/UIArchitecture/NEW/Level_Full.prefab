@@ -163,7 +163,7 @@ MonoBehaviour:
   _initOnStart: 1
   _levelText:
     text: {fileID: 5855319191960689628}
-    format: 1
+    _format: 1
   _highlight:
     gameObject: {fileID: 3932513549319519656}
   _icon:
