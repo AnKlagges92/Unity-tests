@@ -2283,7 +2283,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _levelTextContainer: {fileID: 1573019168}
   _levelIconContainer: {fileID: 1200455948}
+  _levelIconTextContainer: {fileID: 0}
   _levelHighlightContainer: {fileID: 1271046340}
+  _levelHighlightTextContainer: {fileID: 0}
+  _levelHighlightIconContainer: {fileID: 0}
   _levelFullContainer: {fileID: 865796080}
   _levelText:
     text: {fileID: 1207020510}
