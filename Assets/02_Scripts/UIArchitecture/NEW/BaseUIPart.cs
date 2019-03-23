@@ -21,6 +21,9 @@ namespace UI
         }
     }
 
+    /// <summary>
+    /// Common UI Part that handles a GameObject
+    /// </summary>
     [Serializable]
     public class GameObjectUIPart : BaseUIPart
     {
@@ -32,6 +35,9 @@ namespace UI
         }
     }
 
+    /// <summary>
+    /// Common UI Part that handles a Text
+    /// </summary>
     [Serializable]
     public class TextUIPart : BaseUIPart
     {
@@ -54,6 +60,9 @@ namespace UI
         }
     }
 
+    /// <summary>
+    /// Common UI Part that handles a Image
+    /// </summary>
     [Serializable]
     public class ImageUIPart : BaseUIPart
     {

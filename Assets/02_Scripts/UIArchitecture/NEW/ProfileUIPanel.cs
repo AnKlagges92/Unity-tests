@@ -15,6 +15,7 @@ public class ProfileUIPanel : MonoBehaviour
     /// Alternative A: Containers
     /// The class with the desired components must be used (_Text, _Icon, _Highlight, etc..)
     /// PROS: This alternative is useful for PREFABS
+    /// PROS: Additional methods can be added to manage multiple parts
     /// CONS: It require a new class for each variation
     /// </summary>
     [Header("Level Containers")]
@@ -41,11 +42,12 @@ public class ProfileUIPanel : MonoBehaviour
 
     private void Start()
     {
+        /// NOTE: Building Parts this way help us identify unused/non_referenced components faster. This accelerate bugs detection
         _levelController = new LevelUIController(new LevelUIController.Parts
-        { // NOTE: Building it this way we can easily identify unused/non_referenced components speeding bugs detection
+        {
             LevelText = _levelText,
             Highlight = _levelHighlight,
             Icon = null
         }, LevelManager.Instance.LevelRaw, LevelManager.Instance.MaxLevelRaw);
-    }
+    } 
 }

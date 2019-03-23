@@ -1,4 +1,5 @@
 ﻿using System;
+using UnityEngine;
 
 namespace UI
 {
@@ -18,11 +19,11 @@ namespace UI
     [Serializable]
     public class LevelTextsUIPart : TextUIPart
     {
-        public ELevelFormat format = ELevelFormat.Level;
+        [SerializeField] private ELevelFormat _format = ELevelFormat.Level;
 
         public void UpdateText(int level, int maxLevel = 0)
         {
-            if (format == ELevelFormat.Level)
+            if (_format == ELevelFormat.Level)
             {
                 SetText(level);
             }
@@ -82,6 +83,7 @@ namespace UI
             }
 
             UpdateLevelText();
+            UpdateLevelHighlight();
         }
 
         public LevelUIController(Parts parts, Observable<int> level, Observable<int> maxLevel)
@@ -100,16 +102,19 @@ namespace UI
             }
 
             UpdateLevelText();
+            UpdateLevelHighlight();
         }
 
         private void OnLevelChange(int level)
         {
             UpdateLevelText();
+            UpdateLevelHighlight();
         }
 
         private void OnMaxLevelChange(int level)
         {
             UpdateLevelText();
+            UpdateLevelHighlight();
         }
 
         private void UpdateLevelText()
@@ -117,6 +122,14 @@ namespace UI
             if (_parts.LevelText != null)
             {
                 _parts.LevelText.UpdateText(Level, MaxLevel);
+            }
+        }
+
+        private void UpdateLevelHighlight()
+        {
+            if (_parts.Highlight != null)
+            {
+                _parts.Highlight.SetActive(Level == MaxLevel);
             }
         }
     }
