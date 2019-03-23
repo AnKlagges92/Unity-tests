@@ -14,20 +14,23 @@ public class ProfileUIPanel : MonoBehaviour
     /// <summary>
     /// Alternative A: Containers
     /// The class with the desired components must be used (_Text, _Icon, _Highlight, etc..)
-    /// PROS: This alternative is useful for prefabs
+    /// PROS: This alternative is useful for PREFABS
     /// CONS: It require a new class for each variation
     /// </summary>
     [Header("Level Containers")]
     [SerializeField] private LevelUIContainer_Text _levelTextContainer;
     [SerializeField] private LevelUIContainer_Icon _levelIconContainer;
+    [SerializeField] private LevelUIContainer_Icon_Text _levelIconTextContainer;
     [SerializeField] private LevelUIContainer_Highlight _levelHighlightContainer;
+    [SerializeField] private LevelUIContainer_Highlight_Text _levelHighlightTextContainer;
+    [SerializeField] private LevelUIContainer_Highlight_Icon _levelHighlightIconContainer;
     [SerializeField] private LevelUIContainer_Full _levelFullContainer;
 
     /// <summary>
     /// Alternative B: Parts
     /// The required parts needs to be referenced(Image, GameoObject, etc..)
     /// PROS: Only the required parts will be references (No need to serialize empty references)
-    /// CONS: ???
+    /// CONS: 
     /// </summary>
     [Header("Level Parts")]
     [SerializeField] private LevelTextsUIPart _levelText;

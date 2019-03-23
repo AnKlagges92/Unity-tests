@@ -11,8 +11,8 @@ namespace UI
     /// </summary>
     public class LevelUIContainer_Full : LevelUIContainer_Text
     {
-        [SerializeField] private GameObjectUIPart _highlight;
-        [SerializeField] private ImageUIPart _icon;
+        [SerializeField] protected GameObjectUIPart _highlight;
+        [SerializeField] protected ImageUIPart _icon;
 
         public override LevelUIController.Parts GetParts()
         {

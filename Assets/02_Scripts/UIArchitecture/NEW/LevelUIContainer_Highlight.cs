@@ -9,7 +9,7 @@ namespace UI
     /// This is a container
     /// [EXAMPLE]
     /// </summary>
-    public class LevelUIContainer_Highlight : LevelUIContainer_Text
+    public class LevelUIContainer_Highlight : BaseLevelUIContainer
     {
         [SerializeField] private GameObjectUIPart _highlight;
 
@@ -17,7 +17,7 @@ namespace UI
         {
             return new LevelUIController.Parts
             {
-                LevelText = _levelText,
+                LevelText = null,
                 Highlight = _highlight,
                 Icon = null
             };

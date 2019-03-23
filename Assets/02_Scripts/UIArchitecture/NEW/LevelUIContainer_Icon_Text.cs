@@ -9,7 +9,7 @@ namespace UI
     /// This is a container
     /// [EXAMPLE]
     /// </summary>
-    public class LevelUIContainer_Icon : BaseLevelUIContainer
+    public class LevelUIContainer_Icon_Text : LevelUIContainer_Text
     {
         [SerializeField] protected ImageUIPart _icon;
 
@@ -17,7 +17,7 @@ namespace UI
         {
             return new LevelUIController.Parts
             {
-                LevelText = null,
+                LevelText = _levelText,
                 Highlight = null,
                 Icon = _icon
             };

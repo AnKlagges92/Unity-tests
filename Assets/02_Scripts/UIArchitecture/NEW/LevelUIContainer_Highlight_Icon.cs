@@ -9,16 +9,16 @@ namespace UI
     /// This is a container
     /// [EXAMPLE]
     /// </summary>
-    public class LevelUIContainer_Icon : BaseLevelUIContainer
+    public class LevelUIContainer_Highlight_Icon : LevelUIContainer_Icon
     {
-        [SerializeField] protected ImageUIPart _icon;
+        [SerializeField] protected GameObjectUIPart _highlight;
 
         public override LevelUIController.Parts GetParts()
         {
             return new LevelUIController.Parts
             {
                 LevelText = null,
-                Highlight = null,
+                Highlight = _highlight,
                 Icon = _icon
             };
         }

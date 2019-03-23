@@ -11,14 +11,19 @@ namespace UI
     /// </summary>
     public abstract class BaseLevelUIContainer : MonoBehaviour
     {
+        [SerializeField] private bool _initOnStart;
+
         protected LevelUIController _levelController;
 
         protected void Start()
         {
-            InitLevelController();
+            if (_initOnStart)
+            {
+                Init();
+            }
         }
 
-        protected void InitLevelController()
+        public void Init()
         {
             _levelController = new LevelUIController(GetParts(), LevelManager.Instance.LevelRaw, LevelManager.Instance.MaxLevelRaw);
         }
