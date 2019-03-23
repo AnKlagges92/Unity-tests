@@ -40,24 +40,21 @@ namespace UI
     /// This is a SPECIFIC controller that handles the concept: LEVEL
     /// [EXAMPLE]
     /// </summary>
-    public partial class LevelUIController : BaseUIController<LevelUIController.Parts>
+    public class LevelUIController
     {
-        public partial class Parts : BaseParts
+        public partial class Parts
         {
             public LevelTextsUIPart LevelText;
             public ImageUIPart Icon;
             public GameObjectUIPart Highlight;
 
-            public Parts(LevelTextsUIPart levelText, ImageUIPart icon, GameObjectUIPart highlight = null)
-            {
-                LevelText = NullCheck(levelText);
-                Icon = NullCheck(icon);
-                Highlight = highlight;
-            }
+            public Parts() { }
         }
 
         private Observable<int> _level;
         private Observable<int> _maxLevel;
+
+        private Parts _parts;
 
         #region Getter & Setters
 
@@ -76,8 +73,8 @@ namespace UI
         #endregion
 
         public LevelUIController(Parts parts, Observable<int> level)
-            : base(parts)
         {
+            _parts = parts;
             if (level != null)
             {
                 _level = level;
@@ -88,8 +85,8 @@ namespace UI
         }
 
         public LevelUIController(Parts parts, Observable<int> level, Observable<int> maxLevel)
-            : base(parts)
         {
+            _parts = parts;
             if (level != null)
             {
                 _level = level;

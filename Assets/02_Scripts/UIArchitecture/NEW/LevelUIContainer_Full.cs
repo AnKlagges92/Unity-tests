@@ -16,7 +16,12 @@ namespace UI
 
         public override LevelUIController.Parts GetParts()
         {
-            return new LevelUIController.Parts(_levelText, _icon, _highlight);
+            return new LevelUIController.Parts
+            {
+                LevelText = _levelText,
+                Highlight = _highlight,
+                Icon = _icon
+            };
         }
     }
 }

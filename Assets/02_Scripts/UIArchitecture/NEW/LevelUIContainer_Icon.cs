@@ -6,23 +6,6 @@ namespace UI
 {
     /// <summary>
     /// [EXAMPLE]
-    /// This is an OPTIONAL extension
-    /// [EXAMPLE]
-    /// </summary>
-    public partial class LevelUIController : BaseUIController<LevelUIController.Parts>
-    {
-        public partial class Parts : BaseParts
-        {
-            public Parts(LevelTextsUIPart levelText, ImageUIPart icon = null)
-            {
-                LevelText = NullCheck(levelText);
-                Icon = icon;
-            }
-        }
-    }
-
-    /// <summary>
-    /// [EXAMPLE]
     /// This is a container
     /// [EXAMPLE]
     /// </summary>
@@ -32,7 +15,12 @@ namespace UI
 
         public override LevelUIController.Parts GetParts()
         {
-            return new LevelUIController.Parts(_levelText, _icon);
+            return new LevelUIController.Parts
+            {
+                LevelText = _levelText,
+                Highlight = null,
+                Icon = _icon
+            };
         }
     }
 }

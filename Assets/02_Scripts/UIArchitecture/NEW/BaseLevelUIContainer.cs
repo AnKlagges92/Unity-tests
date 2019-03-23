@@ -15,6 +15,11 @@ namespace UI
 
         protected void Start()
         {
+            InitLevelController();
+        }
+
+        protected void InitLevelController()
+        {
             _levelController = new LevelUIController(GetParts(), LevelManager.Instance.LevelRaw, LevelManager.Instance.MaxLevelRaw);
         }
 
