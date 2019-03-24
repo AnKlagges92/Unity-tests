@@ -8,32 +8,29 @@ public class ExampleTest : MonoBehaviour
     /// [EXAMPLE]
     /// </summary>
     [SerializeField]
-    private Component _textComponent = null;
+    private GameObject_Reference _textComponent = null;
 
     /// <summary>
-    /// [EXAMPLE] Additional code that will test the requirements for the given method.
-    /// This methods could add additional logs to the Test
+    /// [EXAMPLE]
     /// </summary>
-    /// <returns></returns>
-    private bool Test_SomeFunctionality()
+    [SerializeField]
+    private GameObject_Reference _iconComponent = null;
+
+    /// <summary>
+    /// [EXAMPLE]
+    /// TEST: Test_SwapComponents()
+    /// </summary>
+    private void SwapComponents()
     {
-        if (_textComponent is UnityEngine.UI.Text)
+        if (_textComponent.IsSafe)
         {
-            SomeFunctionality();
-            return true;
+            bool enable = !_textComponent.Reference.activeSelf;
+            _textComponent.Reference.SetActive(enable);
         }
-        return false;
-    }
-
-    /// <summary>
-    /// [EXAMPLE] Just some stupid example where _component is null
-    /// </summary>
-    private void SomeFunctionality()
-    {
-        var text = _textComponent as UnityEngine.UI.Text;
-        if (text != null)
+        if (_iconComponent.IsSafe)
         {
-            _textComponent.gameObject.SetActive(true);
+            bool enable = !_iconComponent.Reference.activeSelf;
+            _iconComponent.Reference.SetActive(enable);
         }
     }
 
@@ -43,9 +40,26 @@ public class ExampleTest : MonoBehaviour
     private bool Test_All()
     {
         TestUtils testUtils = new TestUtils(this);
-        testUtils.SetupReferences(new TestReference("Some Reference", _textComponent)); // Example
-        testUtils.SetupMethods(testUtils.AddMethod("SomeFunctionality", Test_SomeFunctionality)); // Example
+        testUtils.SetupReferences(_textComponent, _iconComponent); // Examples
+        testUtils.SetupMethods(testUtils.AddMethod("SwapComponents", Test_SwapComponents)); // Example
         return testUtils.Test_All();
+    }
+
+    /// <summary>
+    /// [EXAMPLE]
+    /// Additional code that will test the requirements for the given method.
+    /// This methods could add additional logs to the Test
+    /// </summary>
+    /// <returns></returns>
+    private bool Test_SwapComponents()
+    {
+        if (!_textComponent.Test() || !_iconComponent.Test())
+        {
+            return false;
+        }
+
+        SwapComponents();
+        return true;
     }
 
     #endregion

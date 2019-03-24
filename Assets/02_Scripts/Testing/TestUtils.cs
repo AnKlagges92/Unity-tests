@@ -2,99 +2,25 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class BaseTestMethod
-{
-    protected string _name;
-    protected TestUtils _testUtils;
-
-    public BaseTestMethod(TestUtils testUtils, string name)
-    {
-        _testUtils = testUtils;
-        _name = name;
-    }
-
-    public abstract bool Test();
-}
-
-public class CustomTestMethod : BaseTestMethod
-{
-    public Func<bool> _testMethod;
-
-    public CustomTestMethod(TestUtils testUtils, string name, Func<bool> testMethod)
-        : base(testUtils, name)
-    {
-        _testMethod = testMethod;
-    }
-
-    public override bool Test()
-    {
-        if (_testMethod == null)
-        {
-            _testUtils.LogTestFail(TestUtils.kTestMethodName, _testUtils.ScriptName + "." + _name + " is null");
-            return false;
-        }
-        if (!_testMethod())
-        {
-            _testUtils.LogTestFail(TestUtils.kTestMethodName, _testUtils.ScriptName + "." + _name + " didn't passed Test()");
-            return false;
-        }
-        return true;
-    }
-}
-
-public class TryTestMethod : BaseTestMethod
-{
-    public Action _method;
-
-    public TryTestMethod(TestUtils testUtils, string name, Action method)
-        : base(testUtils, name)
-    {
-        _method = method;
-    }
-
-    public override bool Test()
-    {
-        if (_method == null)
-        {
-            _testUtils.LogTestFail(TestUtils.kTestMethodName, _testUtils.ScriptName + "." + _name + " is null");
-            return false;
-        }
-
-        try
-        {
-            _method();
-            return true;
-        }
-        catch
-        {
-            _testUtils.LogTestFail(TestUtils.kTestMethodName, _testUtils.ScriptName + "." + _name + " didn't passed Test()");
-            return false;
-        }
-    }
-}
-
-public class TestReference
-{
-    public string Name;
-    public UnityEngine.Object Reference;
-
-    public TestReference(string name, UnityEngine.Object reference)
-    {
-        Name = name;
-        Reference = reference;
-    }
-}
-
 public class TestUtils
 {
-    public const string kTestReferenceName = "Test_References";
-    public const string kTestMethodName = "Test_Methods";
+    // Names
+    private const string kTestReferenceName = "References Test";
+    private const string kTestMethodName = "Methods Test";
+
+    //Formats
+    private const string kTestSucceedFormat = "[{0} Succeed]"; // 1: TestName
+    private const string kTestNotStartedFormat = "[{0} NOT STARTED] {1}"; // 1: TestName, 2: Reason
+    private const string kTestFailFormat = "[{0} FAILED] {1}"; // 1: TestName, 2: Reason
 
     private string _scriptName;
-    private List<TestReference> _referencesList;
+    private List<BaseReference> _referencesList;
     private List<BaseTestMethod> _methodsList;
 
+    private string _testName;
+
     public string ScriptName { get { return _scriptName; } }
+    public string TestName { get { return _testName; } }
 
     #region Setup
 
@@ -103,11 +29,12 @@ public class TestUtils
         _scriptName = script.GetType().Name;
     }
 
-    public void SetupReferences(params TestReference[] references)
+    public void SetupReferences(params BaseReference[] references)
     {
-        _referencesList = new List<TestReference>(references.Length);
+        _referencesList = new List<BaseReference>(references.Length);
         foreach (var reference in references)
         {
+            reference.Setup(this);
             _referencesList.Add(reference);
         }
     }
@@ -135,55 +62,74 @@ public class TestUtils
 
     public bool Test_All()
     {
-        bool passed = false;
-        passed |= Test_References();
-        passed |= Test_Methods();
+        bool passed = true;
+        passed &= Test_References();
+        passed &= Test_Methods();
+
+        if (passed)
+        {
+            LogTestSucceed("ALL Tests");
+        }
         return passed;
     }
 
     public bool Test_References()
     {
+        _testName = kTestReferenceName;
         if (_referencesList == null)
         {
-            LogTestNotStarted(kTestReferenceName, "References list is null");
+            LogTestNotStarted(_testName, "References list is null");
             return true;
         }
 
         bool passed = true;
         foreach (var reference in _referencesList)
         {
-            if (reference.Reference == null)
-            {
-                passed = false;
-                LogTestFail(kTestReferenceName, _scriptName + "." + reference.Name + " is null");
-            }
+            passed &= reference.Test();
+        }
+
+        if (passed)
+        {
+            LogTestSucceed(_testName);
         }
         return passed;
     }
 
     public bool Test_Methods()
     {
+        _testName = kTestMethodName;
         if (_methodsList == null)
         {
-            LogTestNotStarted(kTestMethodName, "Methods list is null");
+            LogTestNotStarted(_testName, "Methods list is null");
             return true;
         }
 
         bool passed = true;
         foreach (var method in _methodsList)
         {
-            passed |= !method.Test();
+            passed &= method.Test();
+        }
+
+        if (passed)
+        {
+            LogTestSucceed(_testName);
         }
         return passed;
     }
 
-    public void LogTestNotStarted(string testName, string reason)
+    public static void LogTestNotStarted(string testName, string reason)
     {
-        Debug.LogError("[" + testName + " NOT STARTED] " + _scriptName + "." + reason);
+        Debug.LogError(string.Format(kTestNotStartedFormat, testName, reason));
     }
 
-    public void LogTestFail(string testName, string reason)
+    public static void LogTestFail(string testName, string reason)
     {
-        Debug.LogError("[" + testName + " FAILED] " + reason);
+        Debug.LogError(string.Format(kTestFailFormat, testName, reason));
+    }
+
+    public static void LogTestSucceed(string testName)
+    {
+        Debug.Log(string.Format(kTestSucceedFormat, testName));
     }
 }
+
