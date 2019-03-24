@@ -17,6 +17,7 @@ public class TestUtils
     private const string kTestSucceedFormat = "[{0} Succeed]"; // 1: TestName
     private const string kTestNotStartedFormat = "[{0} NOT STARTED] {1}"; // 1: TestName, 2: Reason
     private const string kTestFailFormat = "[{0} FAILED] {1}"; // 1: TestName, 2: Reason
+    private const string kTestExtraInfoFormat = "[{0} EXTRA INFO] {1}"; // 1: TestName, 2: Reason
 
     private string _scriptName;
     private List<BaseReference> _referencesList;
@@ -53,14 +54,19 @@ public class TestUtils
         }
     }
 
-    public TryTestMethod AddMethod(string name, Action method)
+    public TestMethod AddMethod(string name, Action method)
     {
-        return new TryTestMethod(this, name, method);
+        return new TestMethod(this, name, method);
     }
 
     public CustomTestMethod AddMethod(string name, Func<bool> testMethod)
     {
         return new CustomTestMethod(this, name, testMethod);
+    }
+
+    public BaseReference<T> AddReference<T>(string name, T reference) where T : UnityEngine.Object
+    {
+        return new BaseReference<T>(name, reference);
     }
 
     #endregion
@@ -130,6 +136,11 @@ public class TestUtils
     public static void LogTestFail(string testName, string reason)
     {
         Debug.LogError(string.Format(kTestFailFormat, testName, reason));
+    }
+
+    public static void LogTestExtraInfo(string testName, string reason)
+    {
+        Debug.LogError(string.Format(kTestExtraInfoFormat, testName, reason));
     }
 
     public static void LogTestSucceed(string testName)

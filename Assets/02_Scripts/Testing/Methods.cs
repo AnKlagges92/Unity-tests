@@ -11,7 +11,23 @@ public abstract class BaseTestMethod
         _name = name;
     }
 
-    public abstract bool Test();
+    public bool Test()
+    {
+        string scriptName = _testUtils != null ? _testUtils.ScriptName : TestUtils.kDefaultScriptName;
+        string testName = _testUtils != null ? _testUtils.TestName : TestUtils.kDefaultTestName;
+
+        try
+        {
+            return Inner_Test(scriptName, testName);
+        }
+        catch
+        {
+            TestUtils.LogTestFail(testName, scriptName + "." + _name + " didn't passed Test(). Unhandled error");
+            return false;
+        }
+    }
+
+    protected abstract bool Inner_Test(string scriptName, string testName);
 }
 
 public class CustomTestMethod : BaseTestMethod
@@ -24,10 +40,8 @@ public class CustomTestMethod : BaseTestMethod
         _testMethod = testMethod;
     }
 
-    public override bool Test()
+    protected override bool Inner_Test(string scriptName, string testName)
     {
-        string scriptName = _testUtils != null ? _testUtils.ScriptName : TestUtils.kDefaultScriptName;
-        string testName = _testUtils != null ? _testUtils.TestName : TestUtils.kDefaultTestName;
         if (_testMethod == null)
         {
             TestUtils.LogTestFail(testName, scriptName + "." + _name + " is null");
@@ -42,35 +56,25 @@ public class CustomTestMethod : BaseTestMethod
     }
 }
 
-public class TryTestMethod : BaseTestMethod
+public class TestMethod : BaseTestMethod
 {
     public Action _method;
 
-    public TryTestMethod(TestUtils testUtils, string name, Action method)
+    public TestMethod(TestUtils testUtils, string name, Action method)
         : base(testUtils, name)
     {
         _method = method;
     }
 
-    public override bool Test()
+    protected override bool Inner_Test(string scriptName, string testName)
     {
-        string scriptName = _testUtils != null ? _testUtils.ScriptName : TestUtils.kDefaultScriptName;
-        string testName = _testUtils != null ? _testUtils.TestName : TestUtils.kDefaultTestName;
         if (_method == null)
         {
             TestUtils.LogTestFail(testName, scriptName + "." + _name + " is null");
             return false;
         }
 
-        try
-        {
-            _method();
-            return true;
-        }
-        catch
-        {
-            TestUtils.LogTestFail(testName, scriptName + "." + _name + " didn't passed Test()");
-            return false;
-        }
+        _method();
+        return true;
     }
 }

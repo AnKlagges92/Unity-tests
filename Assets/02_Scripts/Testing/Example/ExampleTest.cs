@@ -47,7 +47,7 @@ public class ExampleTest : MonoBehaviour
         TestUtils testUtils = new TestUtils(this);
         testUtils.SetupReferences(
             _textComponentReference,
-            new BaseReference<GameObject>("Portrait Icon", _iconComponent)); // Examples
+            testUtils.AddReference("Portrait Icon", _iconComponent)); // Examples
 
         testUtils.SetupMethods(
             testUtils.AddMethod("SwapComponents", Test_SwapComponents),
@@ -59,7 +59,7 @@ public class ExampleTest : MonoBehaviour
     /// <summary>
     /// [EXAMPLE] Testing with both Utility & Standard implementations 
     /// Additional code that will test the requirements for the given method.
-    /// This methods could add additional logs to the Test
+    /// OPTIONAL: Add additional information
     /// </summary>
     /// <returns></returns>
     private bool Test_SwapComponents()
@@ -69,6 +69,10 @@ public class ExampleTest : MonoBehaviour
             if (_iconComponent == null)
             {
                 TestUtils.LogTestFail(TestUtils.kTestMethodName, "Portrait icon is null");
+            }
+            if (_iconComponent == null && _textComponentReference.Test())
+            {
+                TestUtils.LogTestExtraInfo(TestUtils.kTestMethodName, "Portrait is null, but TextComponent passed the test!"); // Example
             }
             return false;
         }
@@ -85,7 +89,7 @@ public class ExampleTest : MonoBehaviour
     private bool Test_MultiSwapping()
     {
         // Test feature
-        if (!Test_SwapComponents()) 
+        if (!Test_SwapComponents())
         {
             TestUtils.LogTestNotStarted(TestUtils.kTestMethodName, "MultiSwapping failed!");
             return false;
