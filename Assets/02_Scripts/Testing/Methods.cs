@@ -26,8 +26,8 @@ public class CustomTestMethod : BaseTestMethod
 
     public override bool Test()
     {
-        string scriptName = _testUtils != null ? _testUtils.ScriptName : "SCRIPT_NAME_NOT_FOUND";
-        string testName = _testUtils != null ? _testUtils.TestName : "TEST_NAME_NOT_FOUND";
+        string scriptName = _testUtils != null ? _testUtils.ScriptName : TestUtils.kDefaultScriptName;
+        string testName = _testUtils != null ? _testUtils.TestName : TestUtils.kDefaultTestName;
         if (_testMethod == null)
         {
             TestUtils.LogTestFail(testName, scriptName + "." + _name + " is null");
@@ -54,8 +54,8 @@ public class TryTestMethod : BaseTestMethod
 
     public override bool Test()
     {
-        string scriptName = _testUtils != null ? _testUtils.ScriptName : "SCRIPT_NAME_NOT_FOUND";
-        string testName = _testUtils != null ? _testUtils.TestName : "TEST_NAME_NOT_FOUND";
+        string scriptName = _testUtils != null ? _testUtils.ScriptName : TestUtils.kDefaultScriptName;
+        string testName = _testUtils != null ? _testUtils.TestName : TestUtils.kDefaultTestName;
         if (_method == null)
         {
             TestUtils.LogTestFail(testName, scriptName + "." + _name + " is null");

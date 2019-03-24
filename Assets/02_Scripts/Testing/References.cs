@@ -12,7 +12,7 @@ public abstract class BaseReference
         {
             if (string.IsNullOrEmpty(_name))
             {
-                return "REFERENCE?";
+                return TestUtils.kDefaultReferenceName;
             }
             return _name;
         }
@@ -34,11 +34,11 @@ public abstract class BaseReference
 
     public bool Test()
     {
-        string scriptName = _testUtils != null ? _testUtils.ScriptName : "SCRIPT_NAME_NOT_FOUND";
-        string testName = _testUtils != null ? _testUtils.TestName : "TEST_NAME_NOT_FOUND";
+        string scriptName = _testUtils != null ? _testUtils.ScriptName : TestUtils.kDefaultScriptName;
+        string testName = _testUtils != null ? _testUtils.TestName : TestUtils.kDefaultTestName;
         if (!IsSafe)
         {
-            TestUtils.LogTestFail(testName, scriptName + "." + _name + " is null");
+            TestUtils.LogTestFail(testName, scriptName + "." + Name + " is null");
             return false;
         }
         return true;

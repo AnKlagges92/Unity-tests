@@ -8,6 +8,11 @@ public class TestUtils
     public const string kTestReferenceName = "References Test";
     public const string kTestMethodName = "Methods Test";
 
+    // Default Names
+    public const string kDefaultScriptName = "SCRIPT_NAME_NOT_FOUND";
+    public const string kDefaultTestName = "TEST_NAME_NOT_FOUND";
+    public const string kDefaultReferenceName = "REFERENCE_NAME_NOT_FOUND";
+
     //Formats
     private const string kTestSucceedFormat = "[{0} Succeed]"; // 1: TestName
     private const string kTestNotStartedFormat = "[{0} NOT STARTED] {1}"; // 1: TestName, 2: Reason
