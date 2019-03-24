@@ -5,8 +5,8 @@ using UnityEngine;
 public class TestUtils
 {
     // Names
-    private const string kTestReferenceName = "References Test";
-    private const string kTestMethodName = "Methods Test";
+    public const string kTestReferenceName = "References Test";
+    public const string kTestMethodName = "Methods Test";
 
     //Formats
     private const string kTestSucceedFormat = "[{0} Succeed]"; // 1: TestName
