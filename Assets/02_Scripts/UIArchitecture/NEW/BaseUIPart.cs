@@ -7,8 +7,10 @@ using UnityEngine.UI;
 namespace UI
 {
     /// <summary>
-    /// The UI Parts handle UI components.
-    /// This class are semi-stateless, only the components can change.
+    /// The UI Parts handle UI components
+    /// The components are serialized. It could contain other related variables (Example: Text format, Localization keys, etc..)
+    /// This class is semi-stateless, only the components will change.
+    /// The methods from this classes should remain simple and hopefully do one thing
     /// </summary>
     public abstract class BaseUIPart
     {
@@ -27,11 +29,11 @@ namespace UI
     [Serializable]
     public class GameObjectUIPart : BaseUIPart
     {
-        public GameObject gameObject;
+        [SerializeField] protected GameObject _gameObject;
 
         public void SetActive(bool enable)
         {
-            SafeAction(gameObject, () => gameObject.SetActive(enable));
+            SafeAction(_gameObject, () => _gameObject.SetActive(enable));
         }
     }
 
@@ -41,22 +43,22 @@ namespace UI
     [Serializable]
     public class TextUIPart : BaseUIPart
     {
-        public Text text;
+        [SerializeField] protected Text _text;
 
         public void SetText(object format, params object[] args)
         {
             string value = string.Format(format.ToString(), args);
-            SafeAction(text, () => text.text = value);
+            SafeAction(_text, () => _text.text = value);
         }
 
         public void SetText(object value)
         {
-            SafeAction(text, () => text.text = value.ToString());
+            SafeAction(_text, () => _text.text = value.ToString());
         }
 
         public void SetColor(Color value)
         {
-            SafeAction(text, () => text.color = value);
+            SafeAction(_text, () => _text.color = value);
         }
     }
 
@@ -66,11 +68,11 @@ namespace UI
     [Serializable]
     public class ImageUIPart : BaseUIPart
     {
-        public Image image;
+        [SerializeField] protected Image _image;
 
         public void SetSprite(Sprite sprite)
         {
-            SafeAction(image, () => image.sprite = sprite);
+            SafeAction(_image, () => _image.sprite = sprite);
         }
     }
 }

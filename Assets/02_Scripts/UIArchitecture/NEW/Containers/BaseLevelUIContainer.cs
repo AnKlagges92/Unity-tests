@@ -13,7 +13,7 @@ namespace UI
     {
         [SerializeField] private bool _initOnStart = true;
 
-        protected LevelUIController _levelController;
+        protected LevelUIController _controller;
 
         protected void Start()
         {
@@ -25,7 +25,7 @@ namespace UI
 
         public void Init()
         {
-            _levelController = new LevelUIController(GetParts(), LevelManager.Instance.LevelRaw, LevelManager.Instance.MaxLevelRaw);
+            _controller = new LevelUIController(GetParts(), LevelManager.Instance.LevelRaw, LevelManager.Instance.MaxLevelRaw);
         }
 
         public abstract LevelUIController.Parts GetParts();

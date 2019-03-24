@@ -19,9 +19,9 @@ namespace UI
     [Serializable]
     public class LevelTextsUIPart : TextUIPart
     {
-        [SerializeField] private ELevelFormat _format = ELevelFormat.Level;
+        [SerializeField] protected ELevelFormat _format = ELevelFormat.Level;
 
-        public void UpdateText(int level, int maxLevel = 0)
+        public void SetLevelText(int level, int maxLevel = 0)
         {
             if (_format == ELevelFormat.Level)
             {
@@ -39,11 +39,14 @@ namespace UI
     /// <summary>
     /// [EXAMPLE]
     /// This is a SPECIFIC controller that handles the concept: LEVEL
+    /// UI Controllers have a subclass called Parts which contains ALL POSSIBLE PARTS
+    /// UI Controllers should consider that the parts could be NULL.
+    /// UI Controllers use injection to receive the parts
     /// [EXAMPLE]
     /// </summary>
     public class LevelUIController
     {
-        public partial class Parts
+        public class Parts
         {
             public LevelTextsUIPart LevelText;
             public ImageUIPart Icon;
@@ -121,7 +124,7 @@ namespace UI
         {
             if (_parts.LevelText != null)
             {
-                _parts.LevelText.UpdateText(Level, MaxLevel);
+                _parts.LevelText.SetLevelText(Level, MaxLevel);
             }
         }
 
