@@ -71,11 +71,8 @@ namespace Testing
                     if (attributes.Length > 0)
                     {
                         var fieldValue = field.GetValue(mono) as UnityEngine.Object;
-                        if (fieldValue != null)
-                        {
-                            var testField = new TestField<UnityEngine.Object>(testUtils, field.Name, fieldValue);
-                            fields.Add(testField);
-                        }
+                        var testField = new TestField<UnityEngine.Object>(testUtils, field.Name, fieldValue);
+                        fields.Add(testField);
                     }
                 }
             }
