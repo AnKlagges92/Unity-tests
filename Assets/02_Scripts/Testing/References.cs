@@ -2,7 +2,7 @@
 using UnityEngine;
 
 [Serializable]
-public abstract class BaseReference
+public abstract class BaseField
 {
     [SerializeField]
     private string _name;
@@ -22,7 +22,7 @@ public abstract class BaseReference
 
     public abstract bool IsSafe { get; }
 
-    public BaseReference(string name)
+    public BaseField(string name)
     {
         _name = name;
     }
@@ -46,7 +46,7 @@ public abstract class BaseReference
 }
 
 [Serializable]
-public class BaseReference<T> : BaseReference where T : UnityEngine.Object
+public class BaseField<T> : BaseField where T : UnityEngine.Object
 {
     public T Reference;
 
@@ -55,30 +55,9 @@ public class BaseReference<T> : BaseReference where T : UnityEngine.Object
         get { return Reference != null; }
     }
 
-    public BaseReference(string name, T reference)
+    public BaseField(string name, T reference)
         : base(name)
     {
         Reference = reference;
     }
-}
-
-[Serializable]
-public class Object_Reference : BaseReference<UnityEngine.Object>
-{
-    public Object_Reference(string name, UnityEngine.Object reference)
-        : base(name, reference) { }
-}
-
-[Serializable]
-public class GameObject_Reference : BaseReference<GameObject>
-{
-    public GameObject_Reference(string name, GameObject reference)
-        : base(name, reference) { }
-}
-
-[Serializable]
-public class Component_Reference : BaseReference<Component>
-{
-    public Component_Reference(string name, Component reference)
-        : base(name, reference) { }
 }

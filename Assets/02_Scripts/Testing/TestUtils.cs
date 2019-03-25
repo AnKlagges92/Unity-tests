@@ -20,7 +20,7 @@ public class TestUtils
     private const string kTestExtraInfoFormat = "[{0} EXTRA INFO] {1}"; // 1: TestName, 2: Reason
 
     private string _scriptName;
-    private List<BaseReference> _referencesList;
+    private List<BaseField> _referencesList;
     private List<BaseTestMethod> _methodsList;
 
     private string _testName;
@@ -35,9 +35,9 @@ public class TestUtils
         _scriptName = script.GetType().Name;
     }
 
-    public void SetupReferences(params BaseReference[] references)
+    public void SetupFields(params BaseField[] references)
     {
-        _referencesList = new List<BaseReference>(references.Length);
+        _referencesList = new List<BaseField>(references.Length);
         foreach (var reference in references)
         {
             reference.Setup(this);
@@ -64,9 +64,9 @@ public class TestUtils
         return new CustomTestMethod(this, name, testMethod);
     }
 
-    public BaseReference<T> AddReference<T>(string name, T reference) where T : UnityEngine.Object
+    public BaseField<T> AddReference<T>(string name, T reference) where T : UnityEngine.Object
     {
-        return new BaseReference<T>(name, reference);
+        return new BaseField<T>(name, reference);
     }
 
     #endregion
@@ -74,7 +74,7 @@ public class TestUtils
     public bool Test_All()
     {
         bool passed = true;
-        passed &= Test_References();
+        passed &= Test_Fields();
         passed &= Test_Methods();
 
         if (passed)
@@ -84,7 +84,7 @@ public class TestUtils
         return passed;
     }
 
-    public bool Test_References()
+    public bool Test_Fields()
     {
         _testName = kTestReferenceName;
         if (_referencesList == null)
