@@ -226,7 +226,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1295995440
 Transform:
   m_ObjectHideFlags: 0
@@ -352,12 +352,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b14a0b005359d2544b9b8799959a36c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _textComponent:
+  _textComponentReference:
     _name: Name Text
     Reference: {fileID: 585224694}
-  _iconComponent:
-    _name: Portrait Icon
-    Reference: {fileID: 1295995439}
+  _iconComponent: {fileID: 0}
 --- !u!4 &1526259527
 Transform:
   m_ObjectHideFlags: 0

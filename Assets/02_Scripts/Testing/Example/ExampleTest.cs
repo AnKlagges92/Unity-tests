@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ExampleTest : MonoBehaviour
+public class ExampleTest : Testing.MonoBehaviour
 {
     /// <summary>
     /// [EXAMPLE] Utility implementation (Automatic log implementation)
@@ -45,7 +45,7 @@ public class ExampleTest : MonoBehaviour
     /// Get the references that will be tested during TestReferences()
     /// [OVERRIDE] Replace references
     /// </summary>
-    private BaseReference[] Test_GetReferences(TestUtils testUtils)
+    protected override BaseReference[] Test_GetReferences(TestUtils testUtils)
     {
         return new BaseReference[]
         { // Examples
@@ -58,7 +58,7 @@ public class ExampleTest : MonoBehaviour
     /// Get the methods that will be tested during TestMethods()
     /// [OVERRIDE] Replace methods
     /// </summary>
-    private BaseTestMethod[] Test_GetMethods(TestUtils testUtils)
+    protected override BaseTestMethod[] Test_GetMethods(TestUtils testUtils)
     {
         return new BaseTestMethod[]
         { // Examples
@@ -144,54 +144,6 @@ public class ExampleTest : MonoBehaviour
         }
         return passed;
     }
-
-    #region Common
-
-    [ContextMenu("Test All", true)]
-    private bool Test_ValidateTestAll()
-    {
-        return Test_ValidateTestReferences() || Test_ValidateTestMethods();
-    }
-
-    [ContextMenu("Test All", false)]
-    private bool Test_TestAll()
-    {
-        return Test_TestReferences() && Test_TestMethods();
-    }
-
-    [ContextMenu("1- Test References", true)]
-    private bool Test_ValidateTestReferences()
-    {
-        var testUtils = new TestUtils(this);
-        return Test_GetReferences(testUtils).Length > 0;
-    }
-
-    [ContextMenu("1- Test References", false)]
-    private bool Test_TestReferences()
-    {
-        var testUtils = new TestUtils(this);
-        var references = Test_GetReferences(testUtils);
-        testUtils.SetupReferences(references);
-        return testUtils.Test_References();
-    }
-
-    [ContextMenu("2- Test Methods", true)]
-    private bool Test_ValidateTestMethods()
-    {
-        var testUtils = new TestUtils(this);
-        return Test_GetMethods(testUtils).Length > 0;
-    }
-
-    [ContextMenu("2- Test Methods", false)]
-    private bool Test_TestMethods()
-    {
-        var testUtils = new TestUtils(this);
-        var methods = Test_GetMethods(testUtils);
-        testUtils.SetupMethods(methods);
-        return testUtils.Test_Methods();
-    }
-
-    #endregion
 
     #endregion
 }
