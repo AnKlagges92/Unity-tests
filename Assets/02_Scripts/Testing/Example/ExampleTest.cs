@@ -41,25 +41,36 @@ public class ExampleTest : MonoBehaviour
 
     #region Tests
 
-    [ContextMenu("Test All")]
-    private bool Test_All()
+    /// <summary>
+    /// Get the references that will be tested during TestReferences()
+    /// [OVERRIDE] Replace references
+    /// </summary>
+    private BaseReference[] Test_GetReferences(TestUtils testUtils)
     {
-        TestUtils testUtils = new TestUtils(this);
-        testUtils.SetupReferences(
+        return new BaseReference[]
+        { // Examples
             _textComponentReference,
-            testUtils.AddReference("Portrait Icon", _iconComponent)); // Examples
-
-        testUtils.SetupMethods(
-            testUtils.AddMethod("SwapComponents", Test_SwapComponents),
-            testUtils.AddMethod("MultiSwapping", Test_MultiSwapping)); // Examples
-
-        return testUtils.Test_All();
+            testUtils.AddReference("Portrait Icon", _iconComponent)
+        };
     }
 
     /// <summary>
+    /// Get the methods that will be tested during TestMethods()
+    /// [OVERRIDE] Replace methods
+    /// </summary>
+    private BaseTestMethod[] Test_GetMethods(TestUtils testUtils)
+    {
+        return new BaseTestMethod[]
+        { // Examples
+            testUtils.AddMethod("SwapComponents", Test_SwapComponents),
+            testUtils.AddMethod("SwapComponents", Test_SwapComponents_Lazy),
+            testUtils.AddMethod("MultiSwapping", Test_MultiSwapping)
+        };
+    }
+    /// <summary>
     /// [EXAMPLE] Testing with both Utility & Standard implementations 
     /// Additional code that will test the requirements for the given method.
-    /// OPTIONAL: Add additional information
+    /// [OPTIONAL] ExtraInfo: Add additional information
     /// </summary>
     /// <returns></returns>
     private bool Test_SwapComponents()
@@ -72,8 +83,27 @@ public class ExampleTest : MonoBehaviour
             }
             if (_iconComponent == null && _textComponentReference.Test())
             {
-                TestUtils.LogTestExtraInfo(TestUtils.kTestMethodName, "Portrait is null, but TextComponent passed the test!"); // Example
+                TestUtils.LogTestExtraInfo(TestUtils.kTestMethodName, "Portrait is null, but TextComponent passed the test!"); // ExtraInfo Example
             }
+            return false;
+        }
+
+        SwapComponents();
+        return true;
+    }
+
+    /// <summary>
+    /// [EXAMPLE] Testing with both Utility & Standard implementations 
+    /// [LAZY] References are not tested (They are redundant since are tested in another part when TestAll() is  invoked)
+    /// Additional code that will test the requirements for the given method.
+    /// [OPTIONAL] Add additional information
+    /// </summary>
+    /// <returns></returns>
+    private bool Test_SwapComponents_Lazy()
+    {
+        if (_iconComponent == null && _textComponentReference.Test())
+        {
+            TestUtils.LogTestExtraInfo(TestUtils.kTestMethodName, "Portrait is null, but TextComponent passed the test!"); // ExtraInfo Example, Not a real requisite
             return false;
         }
 
@@ -114,6 +144,54 @@ public class ExampleTest : MonoBehaviour
         }
         return passed;
     }
+
+    #region Common
+
+    [ContextMenu("Test All", true)]
+    private bool Test_ValidateTestAll()
+    {
+        return Test_ValidateTestReferences() || Test_ValidateTestMethods();
+    }
+
+    [ContextMenu("Test All", false)]
+    private bool Test_TestAll()
+    {
+        return Test_TestReferences() && Test_TestMethods();
+    }
+
+    [ContextMenu("1- Test References", true)]
+    private bool Test_ValidateTestReferences()
+    {
+        var testUtils = new TestUtils(this);
+        return Test_GetReferences(testUtils).Length > 0;
+    }
+
+    [ContextMenu("1- Test References", false)]
+    private bool Test_TestReferences()
+    {
+        var testUtils = new TestUtils(this);
+        var references = Test_GetReferences(testUtils);
+        testUtils.SetupReferences(references);
+        return testUtils.Test_References();
+    }
+
+    [ContextMenu("2- Test Methods", true)]
+    private bool Test_ValidateTestMethods()
+    {
+        var testUtils = new TestUtils(this);
+        return Test_GetMethods(testUtils).Length > 0;
+    }
+
+    [ContextMenu("2- Test Methods", false)]
+    private bool Test_TestMethods()
+    {
+        var testUtils = new TestUtils(this);
+        var methods = Test_GetMethods(testUtils);
+        testUtils.SetupMethods(methods);
+        return testUtils.Test_Methods();
+    }
+
+    #endregion
 
     #endregion
 }
