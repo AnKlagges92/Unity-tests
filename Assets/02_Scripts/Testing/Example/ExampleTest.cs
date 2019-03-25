@@ -54,8 +54,9 @@ public class ExampleTest : Testing.MonoBehaviour
 
     /// <summary>
     /// [EXAMPLE] This tackle an specific bug [BUG-1939]
+    /// [OPTIONAL] Add a context menu option to test individually
     /// </summary>
-    [TestingMethod]
+    [TestingMethod, ContextMenu("Test MultiSwapping", false)]
     private bool Test_MultiSwapping()
     {
         // Test feature

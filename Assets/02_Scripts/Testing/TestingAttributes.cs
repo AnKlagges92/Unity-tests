@@ -6,7 +6,7 @@ public class TestingFieldAttribute : Attribute { }
 [AttributeUsage(AttributeTargets.Method)]
 public class TestingMethodAttribute : Attribute
 {
-    public string AltMethodName;
+    public readonly string AltMethodName;
 
     public TestingMethodAttribute() { }
 
