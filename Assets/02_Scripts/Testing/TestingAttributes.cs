@@ -4,4 +4,14 @@
 public class TestingFieldAttribute : Attribute { }
 
 [AttributeUsage(AttributeTargets.Method)]
-public class TestingMethodAttribute : Attribute { }
+public class TestingMethodAttribute : Attribute
+{
+    public string AltMethodName;
+
+    public TestingMethodAttribute() { }
+
+    public TestingMethodAttribute(string altMethodName)
+    {
+        AltMethodName = altMethodName;
+    }
+}

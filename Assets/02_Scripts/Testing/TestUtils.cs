@@ -17,7 +17,7 @@ public class TestUtils
     private const string kTestSucceedFormat = "[{0} Succeed]"; // 1: TestName
     private const string kTestNotStartedFormat = "[{0} NOT STARTED] {1}"; // 1: TestName, 2: Reason
     private const string kTestFailFormat = "[{0} FAILED] {1}"; // 1: TestName, 2: Reason
-    private const string kTestExtraInfoFormat = "[{0} EXTRA INFO] {1}"; // 1: TestName, 2: Reason
+    private const string kTestInfoFormat = "[{0} INFO] {1}"; // 1: TestName, 2: Reason
 
     private string _scriptName;
     private List<BaseField> _referencesList;
@@ -138,9 +138,9 @@ public class TestUtils
         Debug.LogError(string.Format(kTestFailFormat, testName, reason));
     }
 
-    public static void LogTestExtraInfo(string testName, string reason)
+    public static void LogTestInfo(string testName, string reason)
     {
-        Debug.LogError(string.Format(kTestExtraInfoFormat, testName, reason));
+        Debug.LogError(string.Format(kTestInfoFormat, testName, reason));
     }
 
     public static void LogTestSucceed(string testName)

@@ -20,7 +20,7 @@ public class ExampleTest : Testing.MonoBehaviour
     /// [EXAMPLE]
     /// TEST: Test_SwapComponents()
     /// </summary>
-    [TestingMethod]
+    [TestingMethod("Test_SwapComponents")]
     private void SwapComponents()
     {
         if (_textComponent != null)
@@ -40,7 +40,7 @@ public class ExampleTest : Testing.MonoBehaviour
     /// <summary>
     /// [EXAMPLE] Testing with both Utility & Standard implementations 
     /// Additional code that will test the requirements for the given method.
-    /// [OPTIONAL] ExtraInfo: Add additional information
+    /// [OPTIONAL] Info: Add additional information
     /// </summary>
     /// <returns></returns>
     [TestingMethod]
@@ -48,10 +48,7 @@ public class ExampleTest : Testing.MonoBehaviour
     {
         if (_textComponent == null || _iconComponent == null)
         {
-            if (_iconComponent == null && _textComponent != null)
-            {
-                TestUtils.LogTestExtraInfo(TestUtils.kTestMethodName, "Portrait is null, but TextComponent passed the test!"); // ExtraInfo Example
-            }
+            TestUtils.LogTestInfo(TestUtils.kTestMethodName, "Portrait Icon and/or Name Text is null"); // Info Example
             return false;
         }
 

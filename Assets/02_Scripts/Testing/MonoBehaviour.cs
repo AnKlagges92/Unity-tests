@@ -88,21 +88,40 @@ namespace Testing
         {
             MonoBehaviour[] scriptComponents = GetComponents<MonoBehaviour>();
 
-            List<BaseTestMethod> methods = new List<BaseTestMethod>();
+            List<BaseTestMethod> testMethods = new List<BaseTestMethod>();
             foreach (MonoBehaviour mono in scriptComponents)
             {
-                var monoType = mono.GetType();
-                foreach (var method in monoType.GetMethods(BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance))
+                var methods = mono.GetType().GetMethods(BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance);
+                foreach (var method in methods)
                 {
                     var attributes = method.GetCustomAttributes(typeof(TestingMethodAttribute), true);
                     if (attributes.Length > 0)
                     {
-                        var testMethod = new TestMethod(testUtils, method.Name, () => method.Invoke(mono, null));
-                        methods.Add(testMethod);
+                        TestMethod testMethod = null;
+
+                        var attribute = attributes[0] as TestingMethodAttribute;
+                        if (!string.IsNullOrEmpty(attribute.AltMethodName))
+                        {
+                            var altMethod = Array.Find(methods, x => x.Name == attribute.AltMethodName);
+                            if (altMethod != null)
+                            {
+                                testMethod = new TestMethod(testUtils, altMethod.Name, () => altMethod.Invoke(mono, null));
+                            }
+                            else
+                            {
+                                TestUtils.LogTestFail(TestUtils.kTestMethodName, "Alternative name not found for method: " + method.Name);
+                            }
+                        }
+
+                        if (testMethod == null)
+                        {
+                            testMethod = new TestMethod(testUtils, method.Name, () => method.Invoke(mono, null));
+                        }
+                        testMethods.Add(testMethod);
                     }
                 }
             }
-            return methods;
+            return testMethods;
         }
     }
 }
