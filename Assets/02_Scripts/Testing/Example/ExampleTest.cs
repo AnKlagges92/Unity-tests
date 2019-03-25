@@ -18,9 +18,8 @@ public class ExampleTest : Testing.MonoBehaviour
 
     /// <summary>
     /// [EXAMPLE]
-    /// TEST: Test_SwapComponents()
     /// </summary>
-    [TestingMethod("Test_SwapComponents")]
+    [TestingMethod("Test_SwapComponents")] // Example
     private void SwapComponents()
     {
         if (_textComponent != null)
@@ -38,17 +37,14 @@ public class ExampleTest : Testing.MonoBehaviour
     #region Tests
 
     /// <summary>
-    /// [EXAMPLE] Testing with both Utility & Standard implementations 
-    /// Additional code that will test the requirements for the given method.
+    /// [EXAMPLE] Additional code that will test the requirements for the given method.
     /// [OPTIONAL] Info: Add additional information
     /// </summary>
-    /// <returns></returns>
-    [TestingMethod]
     private bool Test_SwapComponents()
     {
         if (_textComponent == null || _iconComponent == null)
         {
-            TestUtils.LogTestInfo(TestUtils.kTestMethodName, "Portrait Icon and/or Name Text is null"); // Info Example
+            TestDebug.LogTestInfo("Test_SwapComponents", "Portrait Icon and/or Name Text is null"); // Info Example
             return false;
         }
 
@@ -57,17 +53,15 @@ public class ExampleTest : Testing.MonoBehaviour
     }
 
     /// <summary>
-    /// [EXAMPLE] Testing some edge case
-    /// This can tackle an specific bug [BUG-1939]
+    /// [EXAMPLE] This tackle an specific bug [BUG-1939]
     /// </summary>
-    /// <returns></returns>
     [TestingMethod]
     private bool Test_MultiSwapping()
     {
         // Test feature
         if (!Test_SwapComponents())
         {
-            TestUtils.LogTestNotStarted(TestUtils.kTestMethodName, "MultiSwapping failed!");
+            TestDebug.LogTestNotStarted("Test_MultiSwapping", "Failed!");
             return false;
         }
 
@@ -86,7 +80,7 @@ public class ExampleTest : Testing.MonoBehaviour
 
         if (!passed)
         {
-            TestUtils.LogTestFail(TestUtils.kTestMethodName, "MultiSwapping failed!");
+            TestDebug.LogTestFail("Test_MultiSwapping", "MultiSwapping failed!");
         }
         return passed;
     }

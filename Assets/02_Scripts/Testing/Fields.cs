@@ -1,63 +1,31 @@
 ﻿using System;
-using UnityEngine;
 
-[Serializable]
-public abstract class BaseField
+namespace Testing
 {
-    [SerializeField]
-    private string _name;
-    public string Name
+    [Serializable]
+    public class TestField<T> : BaseTestClass where T : UnityEngine.Object
     {
-        get
+        public T Reference;
+
+        public TestField(TestUtils testUtils, string name, T reference)
+            : base(testUtils, name)
         {
-            if (string.IsNullOrEmpty(_name))
+            Reference = reference;
+        }
+
+        protected virtual bool IsSafe
+        {
+            get { return Reference != null; }
+        }
+
+        protected override bool Inner_Test(string scriptName, string testName)
+        {
+            if (!IsSafe)
             {
-                return TestUtils.kDefaultReferenceName;
+                TestDebug.LogTestFail(testName, scriptName + "." + _name + " is null");
+                return false;
             }
-            return _name;
+            return true;
         }
-    }
-
-    protected TestUtils _testUtils;
-
-    public abstract bool IsSafe { get; }
-
-    public BaseField(string name)
-    {
-        _name = name;
-    }
-
-    public void Setup(TestUtils testUtils)
-    {
-        _testUtils = testUtils;
-    }
-
-    public bool Test()
-    {
-        string scriptName = _testUtils != null ? _testUtils.ScriptName : TestUtils.kDefaultScriptName;
-        string testName = _testUtils != null ? _testUtils.TestName : TestUtils.kDefaultTestName;
-        if (!IsSafe)
-        {
-            TestUtils.LogTestFail(testName, scriptName + "." + Name + " is null");
-            return false;
-        }
-        return true;
-    }
-}
-
-[Serializable]
-public class BaseField<T> : BaseField where T : UnityEngine.Object
-{
-    public T Reference;
-
-    public override bool IsSafe
-    {
-        get { return Reference != null; }
-    }
-
-    public BaseField(string name, T reference)
-        : base(name)
-    {
-        Reference = reference;
     }
 }

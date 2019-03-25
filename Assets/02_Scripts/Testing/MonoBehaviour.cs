@@ -57,11 +57,11 @@ namespace Testing
         /// <summary>
         /// Get the fields that will be tested during TestFields()
         /// </summary>
-        private List<BaseField> Test_GetFields(TestUtils testUtils)
+        private List<BaseTestClass> Test_GetFields(TestUtils testUtils)
         {
             MonoBehaviour[] scriptComponents = GetComponents<MonoBehaviour>();
 
-            List<BaseField> fields = new List<BaseField>();
+            List<BaseTestClass> fields = new List<BaseTestClass>();
             foreach (MonoBehaviour mono in scriptComponents)
             {
                 var monoType = mono.GetType();
@@ -70,9 +70,10 @@ namespace Testing
                     var attributes = field.GetCustomAttributes(typeof(TestingFieldAttribute), true);
                     if (attributes.Length > 0)
                     {
-                        if (field.GetValue(mono) is UnityEngine.Object)
+                        var fieldValue = field.GetValue(mono) as UnityEngine.Object;
+                        if (fieldValue != null)
                         {
-                            var testField = new BaseField<UnityEngine.Object>(field.Name, (UnityEngine.Object)field.GetValue(mono));
+                            var testField = new TestField<UnityEngine.Object>(testUtils, field.Name, fieldValue);
                             fields.Add(testField);
                         }
                     }
@@ -84,11 +85,11 @@ namespace Testing
         /// <summary>
         /// Get the methods that will be tested during TestMethods()
         /// </summary>
-        private List<BaseTestMethod> Test_GetMethods(TestUtils testUtils)
+        private List<BaseTestClass> Test_GetMethods(TestUtils testUtils)
         {
             MonoBehaviour[] scriptComponents = GetComponents<MonoBehaviour>();
 
-            List<BaseTestMethod> testMethods = new List<BaseTestMethod>();
+            List<BaseTestClass> testMethods = new List<BaseTestClass>();
             foreach (MonoBehaviour mono in scriptComponents)
             {
                 var methods = mono.GetType().GetMethods(BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance);
@@ -97,25 +98,27 @@ namespace Testing
                     var attributes = method.GetCustomAttributes(typeof(TestingMethodAttribute), true);
                     if (attributes.Length > 0)
                     {
-                        TestMethod testMethod = null;
+                        ActionTestMethod testMethod = null;
 
+                        // Try use alternative method name
                         var attribute = attributes[0] as TestingMethodAttribute;
                         if (!string.IsNullOrEmpty(attribute.AltMethodName))
                         {
                             var altMethod = Array.Find(methods, x => x.Name == attribute.AltMethodName);
                             if (altMethod != null)
                             {
-                                testMethod = new TestMethod(testUtils, altMethod.Name, () => altMethod.Invoke(mono, null));
+                                testMethod = new ActionTestMethod(testUtils, altMethod.Name, () => altMethod.Invoke(mono, null));
                             }
                             else
                             {
-                                TestUtils.LogTestFail(TestUtils.kTestMethodName, "Alternative name not found for method: " + method.Name);
+                                TestDebug.LogTestFail(TestUtils.kTestMethodName, "Alternative name not found for method: " + method.Name);
                             }
                         }
 
+                        // If needed, use method name
                         if (testMethod == null)
                         {
-                            testMethod = new TestMethod(testUtils, method.Name, () => method.Invoke(mono, null));
+                            testMethod = new ActionTestMethod(testUtils, method.Name, () => method.Invoke(mono, null));
                         }
                         testMethods.Add(testMethod);
                     }
