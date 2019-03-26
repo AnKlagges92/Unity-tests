@@ -13,6 +13,7 @@ namespace Testing
         // Default Names
         public const string kDefaultScriptName = "SCRIPT_NAME_NOT_FOUND";
         public const string kDefaultTestName = "TEST_NAME_NOT_FOUND";
+        public const string kDefaultFieldName = "FIELD_NAME_NOT_FOUND";
 
         private string _scriptName;
         private List<BaseTestClass> _fieldsList;
@@ -28,6 +29,12 @@ namespace Testing
         public TestUtils(object script)
         {
             _scriptName = script.GetType().Name;
+        }
+
+        public bool TestField(UnityEngine.Object reference, string fieldName = kDefaultFieldName)
+        {
+            var testField = new TestField<UnityEngine.Object>(this, fieldName, reference);
+            return testField.Test();
         }
 
         public void SetupFields(params BaseTestClass[] fields)

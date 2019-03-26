@@ -42,9 +42,9 @@ public class ExampleTest : Testing.MonoBehaviour
     /// </summary>
     private bool Test_SwapComponents()
     {
-        if (_textComponent == null || _iconComponent == null)
+        var testUtils = new Testing.TestUtils(this);
+        if (!testUtils.TestField(_textComponent, "_textComponent") || !testUtils.TestField(_iconComponent, "_iconComponent"))
         {
-            TestDebug.LogTestInfo("Test_SwapComponents", "Portrait Icon and/or Name Text is null"); // Info Example
             return false;
         }
 
