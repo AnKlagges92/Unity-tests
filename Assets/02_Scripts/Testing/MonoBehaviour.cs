@@ -7,13 +7,13 @@ namespace Testing
 {
     public abstract class MonoBehaviour : UnityEngine.MonoBehaviour
     {
-        [ContextMenu("Test All", true)]
+        [ContextMenu("Test All", true, 1000000)]
         private bool Test_ValidateTestAll()
         {
             return Test_ValidateTestFields() || Test_ValidateTestMethods();
         }
 
-        [ContextMenu("Test All", false)]
+        [ContextMenu("Test All", false, 1000000)]
         private bool Test_TestAll()
         {
             bool passed = true;
@@ -22,14 +22,14 @@ namespace Testing
             return passed;
         }
 
-        [ContextMenu("1- Test Fields", true)]
+        [ContextMenu("1- Test Fields", true, 1000001)]
         private bool Test_ValidateTestFields()
         {
             var testUtils = new TestUtils(this);
             return Test_GetFields(testUtils).Count > 0;
         }
 
-        [ContextMenu("1- Test Fields", false)]
+        [ContextMenu("1- Test Fields", false, 1000001)]
         private bool Test_TestFields()
         {
             var testUtils = new TestUtils(this);
@@ -38,14 +38,14 @@ namespace Testing
             return testUtils.Test_Fields();
         }
 
-        [ContextMenu("2- Test Methods", true)]
+        [ContextMenu("2- Test Methods", true, 1000002)]
         private bool Test_ValidateTestMethods()
         {
             var testUtils = new TestUtils(this);
             return Test_GetMethods(testUtils).Count > 0;
         }
 
-        [ContextMenu("2- Test Methods", false)]
+        [ContextMenu("2- Test Methods", false, 1000002)]
         private bool Test_TestMethods()
         {
             var testUtils = new TestUtils(this);
