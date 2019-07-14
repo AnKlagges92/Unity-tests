@@ -15,6 +15,6 @@ public class ProfileUIPanel_alt_alt_alt : MonoBehaviour
 
     private void Start()
     {
-        _levelController = new LevelUIController_alt_alt_alt(LevelManager.Instance.LevelRaw, null, _levelText, _levelMaxText, _levelDisplay, _levelHighlight);
+        //_levelController = new LevelUIController_alt_alt_alt(LevelManager.Instance.LevelRaw, null, _levelText, _levelMaxText, _levelDisplay, _levelHighlight);
     }
 }

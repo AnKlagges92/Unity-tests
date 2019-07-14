@@ -1,41 +1,6 @@
-﻿using System;
-using UnityEngine;
-
+﻿
 namespace UI
 {
-    #region Parts
-
-    public enum ELevelFormat
-    {
-        Level,
-        Full
-    }
-
-    /// <summary>
-    /// [EXAMPLE]
-    /// This is a SPECIFIC part
-    /// [EXAMPLE]
-    /// </summary>
-    [Serializable]
-    public class LevelTextsUIPart : TextUIPart
-    {
-        [SerializeField] protected ELevelFormat _format = ELevelFormat.Level;
-
-        public void SetLevelText(int level, int maxLevel = 0)
-        {
-            if (_format == ELevelFormat.Level)
-            {
-                SetText(level);
-            }
-            else
-            {
-                SetText(level + " /" + maxLevel);
-            }
-        }
-    }
-
-    #endregion
-
     /// <summary>
     /// [EXAMPLE]
     /// This is a SPECIFIC controller that handles the concept: LEVEL
@@ -65,13 +30,11 @@ namespace UI
         public int Level
         {
             get { return _level.Value; }
-            set { _level.Value = value; }
         }
 
         public int MaxLevel
         {
             get { return _maxLevel.Value; }
-            set { _maxLevel.Value = value; }
         }
 
         #endregion
