@@ -86,7 +86,7 @@ GameObject:
   - component: {fileID: 6241713954488399812}
   - component: {fileID: 633640961211901748}
   m_Layer: 5
-  m_Name: Level Icon
+  m_Name: Icon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -161,10 +161,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _initOnStart: 1
-  _levelText:
-    _levelText: {fileID: 5855319191960689628}
-    _maxLevelText: {fileID: 0}
-    _format: 0
+  _levelAmount:
+    _amountText: {fileID: 5855319191960689628}
+    _maxAmountText: {fileID: 0}
+    _showMaxAmount: 0
   _highlight:
     _gameObject: {fileID: 3932513549319519656}
   _icon:

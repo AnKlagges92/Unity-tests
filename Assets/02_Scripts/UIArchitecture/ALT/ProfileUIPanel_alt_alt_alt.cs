@@ -7,7 +7,7 @@ public class ProfileUIPanel_alt_alt_alt : MonoBehaviour
 {
     [Header("Level Parts")]
     [SerializeField] private TextUIPart _levelText;
-    [SerializeField] private LevelTextsUIPart _levelMaxText;
+    [SerializeField] private AmountUIPart _levelMaxText;
     [SerializeField] private ImageUIPart _levelDisplay;
     [SerializeField] private GameObjectUIPart _levelHighlight;
 

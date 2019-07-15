@@ -1121,7 +1121,7 @@ RectTransform:
   - {fileID: 1324622616}
   - {fileID: 565754013}
   m_Father: {fileID: 1623395044}
-  m_RootOrder: 2
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -1538,7 +1538,7 @@ GameObject:
   - component: {fileID: 1207020511}
   - component: {fileID: 1207020510}
   m_Layer: 5
-  m_Name: Level Text
+  m_Name: Amount Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1727,6 +1727,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c38eb6ecf2f2f04c8e97ede21e74f17, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _style:
+    sprite: {fileID: 10901, guid: 0000000000000000f000000000000000, type: 0}
 --- !u!1 &1324622615
 GameObject:
   m_ObjectHideFlags: 0
@@ -1739,7 +1741,7 @@ GameObject:
   - component: {fileID: 1324622618}
   - component: {fileID: 1324622617}
   m_Layer: 5
-  m_Name: Level Icon
+  m_Name: Icon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2005,9 +2007,9 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 859306295}
   - {fileID: 575894100}
   - {fileID: 763217371}
-  - {fileID: 859306295}
   m_Father: {fileID: 1163456370}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2030,10 +2032,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _simpleLevelContainer: {fileID: 575894101}
   _fullLevelContainer: {fileID: 763217372}
-  _levelText:
-    _levelText: {fileID: 1207020510}
-    _maxLevelText: {fileID: 0}
-    _format: 1
+  _levelAmount:
+    _amountText: {fileID: 1207020510}
+    _maxAmountText: {fileID: 0}
+    _showMaxAmount: 1
   _levelHighlight:
     _gameObject: {fileID: 565754012}
   _levelIcon:

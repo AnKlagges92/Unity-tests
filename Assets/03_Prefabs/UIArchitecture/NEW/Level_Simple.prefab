@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _initOnStart: 1
-  _levelText:
-    _levelText: {fileID: 6782626986252015722}
-    _maxLevelText: {fileID: 0}
-    _format: 0
+  _levelAmount:
+    _amountText: {fileID: 6782626986252015722}
+    _maxAmountText: {fileID: 0}
+    _showMaxAmount: 0
   _icon:
     _image: {fileID: 3164688442424634407}
 --- !u!1 &6751945061514952812
@@ -31,7 +31,7 @@ GameObject:
   - component: {fileID: 5739049225792488805}
   - component: {fileID: 3164688442424634407}
   m_Layer: 5
-  m_Name: Level Icon
+  m_Name: Icon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -103,7 +103,7 @@ PrefabInstance:
     - target: {fileID: 2739236238932935124, guid: 3a8d846fa0b413d48b075363cfcc9c14,
         type: 3}
       propertyPath: m_Name
-      value: Level_Icon_Text
+      value: Level_Simple
       objectReference: {fileID: 0}
     - target: {fileID: 1496147521457416347, guid: 3a8d846fa0b413d48b075363cfcc9c14,
         type: 3}

@@ -13,13 +13,13 @@ namespace UI
     /// </summary>
     public class LevelUIContainer : BaseLevelUIContainer
     {
-        [SerializeField] private LevelTextsUIPart _levelText;
+        [SerializeField] private AmountUIPart _levelAmount;
         [SerializeField] private GameObjectUIPart _highlight;
         [SerializeField] private ImageUIPart _icon;
 
         protected override LevelUIController.Parts Parts
         {
-            get { return new LevelUIController.Parts(_levelText, _icon, _highlight); }
+            get { return new LevelUIController.Parts(_levelAmount, _icon, _highlight); }
         }
     }
 
@@ -49,7 +49,7 @@ namespace UI
             if (!_initialized)
             {
                 _initialized = true;
-                _controller = new LevelUIController(Parts, LevelManager.Instance.Configurations, LevelManager.Instance.LevelRaw, LevelManager.Instance.MaxLevelRaw);
+                _controller = LevelUIController.GetController(Parts);
             }
         }
     }

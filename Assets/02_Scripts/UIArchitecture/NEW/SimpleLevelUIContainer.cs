@@ -11,12 +11,12 @@ namespace UI
     /// </summary>
     public class SimpleLevelUIContainer : BaseLevelUIContainer
     {
-        [SerializeField] private LevelTextsUIPart _levelText;
+        [SerializeField] private AmountUIPart _levelAmount;
         [SerializeField] private ImageUIPart _icon;
 
         protected override LevelUIController.Parts Parts
         {
-            get { return new LevelUIController.Parts(_levelText, _icon, null); }
+            get { return new LevelUIController.Parts(_levelAmount, _icon, null); }
         }
     }
 }

@@ -14,22 +14,22 @@ namespace UI
     public class LevelUIController
     {
         [Serializable]
-        public class Configurations
+        public struct UIStyle
         {
             public Sprite sprite;
         }
 
         public class Parts
         {
-            public LevelTextsUIPart LevelText;
+            public AmountUIPart LevelAmount;
             public ImageUIPart Icon;
             public GameObjectUIPart Highlight;
 
             public Parts() { }
 
-            public Parts(LevelTextsUIPart levelText, ImageUIPart icon, GameObjectUIPart highlight)
+            public Parts(AmountUIPart levelAmount, ImageUIPart icon, GameObjectUIPart highlight)
             {
-                LevelText = levelText;
+                LevelAmount = levelAmount;
                 Icon = icon;
                 Highlight = highlight;
             }
@@ -39,7 +39,7 @@ namespace UI
         private Observable<int> _maxLevel;
 
         private Parts _parts;
-        private Configurations _configurations;
+        private UIStyle _style;
 
         #region Getter & Setters
 
@@ -55,7 +55,13 @@ namespace UI
 
         #endregion
 
-        public LevelUIController(Parts parts, Configurations configs, Observable<int> level)
+        public static LevelUIController GetController(Parts parts)
+        {
+            var manager = LevelManager.Instance;
+            return new LevelUIController(parts, manager.UIStyle, manager.LevelRaw, manager.MaxLevelRaw);
+        }
+
+        public LevelUIController(Parts parts, UIStyle style, Observable<int> level)
         {
             if (level != null)
             {
@@ -63,10 +69,10 @@ namespace UI
                 _level.OnValueChange += OnLevelChange;
             }
 
-            Init(parts, configs);
+            Init(parts, style);
         }
 
-        public LevelUIController(Parts parts, Configurations configs, Observable<int> level, Observable<int> maxLevel)
+        public LevelUIController(Parts parts, UIStyle style, Observable<int> level, Observable<int> maxLevel)
         {
             if (level != null)
             {
@@ -80,13 +86,13 @@ namespace UI
                 _maxLevel.OnValueChange += OnMaxLevelChange;
             }
 
-            Init(parts, configs);
+            Init(parts, style);
         }
 
-        private void Init(Parts parts, Configurations configs)
+        private void Init(Parts parts, UIStyle style)
         {
             _parts = parts;
-            _configurations = configs;
+            _style = style;
 
             UpdateLevelText();
             UpdateIcon();
@@ -107,17 +113,17 @@ namespace UI
 
         private void UpdateIcon()
         {
-            if(_parts.Icon != null && _configurations.sprite != null)
+            if(_parts.Icon != null && _style.sprite != null)
             {
-                _parts.Icon.SetSprite(_configurations.sprite);
+                _parts.Icon.SetSprite(_style.sprite);
             }
         }
 
         private void UpdateLevelText()
         {
-            if (_parts.LevelText != null)
+            if (_parts.LevelAmount != null)
             {
-                _parts.LevelText.SetLevelText(Level, MaxLevel);
+                _parts.LevelAmount.SetAmount(Level, MaxLevel);
             }
         }
 
