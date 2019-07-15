@@ -49,7 +49,7 @@ namespace UI
             if (!_initialized)
             {
                 _initialized = true;
-                _controller = new LevelUIController(Parts, LevelManager.Instance.LevelRaw, LevelManager.Instance.MaxLevelRaw);
+                _controller = new LevelUIController(Parts, LevelManager.Instance.Configurations, LevelManager.Instance.LevelRaw, LevelManager.Instance.MaxLevelRaw);
             }
         }
     }

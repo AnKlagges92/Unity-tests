@@ -35,12 +35,7 @@ public class ProfileUIPanel : MonoBehaviour
 
     private void Start()
     {
-        /// NOTE: Building Parts this way help us identify unused/non_referenced components faster. This accelerate bugs detection
-        _levelController = new LevelUIController(new LevelUIController.Parts
-        {
-            LevelText = _levelText,
-            Highlight = _levelHighlight,
-            Icon = null
-        }, LevelManager.Instance.LevelRaw, LevelManager.Instance.MaxLevelRaw);
+        _levelController = new LevelUIController(new LevelUIController.Parts(_levelText, _levelIcon, _levelHighlight),
+            LevelManager.Instance.Configurations, LevelManager.Instance.LevelRaw, LevelManager.Instance.MaxLevelRaw);
     } 
 }

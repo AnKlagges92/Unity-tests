@@ -1,4 +1,6 @@
-﻿
+﻿using System;
+using UnityEngine;
+
 namespace UI
 {
     /// <summary>
@@ -11,6 +13,12 @@ namespace UI
     /// </summary>
     public class LevelUIController
     {
+        [Serializable]
+        public class Configurations
+        {
+            public Sprite sprite;
+        }
+
         public class Parts
         {
             public LevelTextsUIPart LevelText;
@@ -31,6 +39,7 @@ namespace UI
         private Observable<int> _maxLevel;
 
         private Parts _parts;
+        private Configurations _configurations;
 
         #region Getter & Setters
 
@@ -46,22 +55,19 @@ namespace UI
 
         #endregion
 
-        public LevelUIController(Parts parts, Observable<int> level)
+        public LevelUIController(Parts parts, Configurations configs, Observable<int> level)
         {
-            _parts = parts;
             if (level != null)
             {
                 _level = level;
                 _level.OnValueChange += OnLevelChange;
             }
 
-            UpdateLevelText();
-            UpdateLevelHighlight();
+            Init(parts, configs);
         }
 
-        public LevelUIController(Parts parts, Observable<int> level, Observable<int> maxLevel)
+        public LevelUIController(Parts parts, Configurations configs, Observable<int> level, Observable<int> maxLevel)
         {
-            _parts = parts;
             if (level != null)
             {
                 _level = level;
@@ -74,20 +80,37 @@ namespace UI
                 _maxLevel.OnValueChange += OnMaxLevelChange;
             }
 
+            Init(parts, configs);
+        }
+
+        private void Init(Parts parts, Configurations configs)
+        {
+            _parts = parts;
+            _configurations = configs;
+
             UpdateLevelText();
-            UpdateLevelHighlight();
+            UpdateIcon();
+            UpdateHighlight();
         }
 
         private void OnLevelChange(int level)
         {
             UpdateLevelText();
-            UpdateLevelHighlight();
+            UpdateHighlight();
         }
 
         private void OnMaxLevelChange(int level)
         {
             UpdateLevelText();
-            UpdateLevelHighlight();
+            UpdateHighlight();
+        }
+
+        private void UpdateIcon()
+        {
+            if(_parts.Icon != null && _configurations.sprite != null)
+            {
+                _parts.Icon.SetSprite(_configurations.sprite);
+            }
         }
 
         private void UpdateLevelText()
@@ -98,7 +121,7 @@ namespace UI
             }
         }
 
-        private void UpdateLevelHighlight()
+        private void UpdateHighlight()
         {
             if (_parts.Highlight != null)
             {
