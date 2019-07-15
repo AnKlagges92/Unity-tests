@@ -14,7 +14,7 @@ namespace UI
     public class LevelUIController
     {
         [Serializable]
-        public struct UIStyle
+        public struct UIConfigurations
         {
             public Sprite sprite;
         }
@@ -39,7 +39,7 @@ namespace UI
         private Observable<int> _maxLevel;
 
         private Parts _parts;
-        private UIStyle _style;
+        private UIConfigurations _configurations;
 
         #region Getter & Setters
 
@@ -58,10 +58,10 @@ namespace UI
         public static LevelUIController GetController(Parts parts)
         {
             var manager = LevelManager.Instance;
-            return new LevelUIController(parts, manager.UIStyle, manager.LevelRaw, manager.MaxLevelRaw);
+            return new LevelUIController(parts, manager.UIConfigurations, manager.LevelRaw, manager.MaxLevelRaw);
         }
 
-        public LevelUIController(Parts parts, UIStyle style, Observable<int> level)
+        public LevelUIController(Parts parts, UIConfigurations configs, Observable<int> level)
         {
             if (level != null)
             {
@@ -69,10 +69,10 @@ namespace UI
                 _level.OnValueChange += OnLevelChange;
             }
 
-            Init(parts, style);
+            Init(parts, configs);
         }
 
-        public LevelUIController(Parts parts, UIStyle style, Observable<int> level, Observable<int> maxLevel)
+        public LevelUIController(Parts parts, UIConfigurations configs, Observable<int> level, Observable<int> maxLevel)
         {
             if (level != null)
             {
@@ -86,13 +86,13 @@ namespace UI
                 _maxLevel.OnValueChange += OnMaxLevelChange;
             }
 
-            Init(parts, style);
+            Init(parts, configs);
         }
 
-        private void Init(Parts parts, UIStyle style)
+        private void Init(Parts parts, UIConfigurations configs)
         {
             _parts = parts;
-            _style = style;
+            _configurations = configs;
 
             UpdateLevelText();
             UpdateIcon();
@@ -113,9 +113,9 @@ namespace UI
 
         private void UpdateIcon()
         {
-            if(_parts.Icon != null && _style.sprite != null)
+            if(_parts.Icon != null && _configurations.sprite != null)
             {
-                _parts.Icon.SetSprite(_style.sprite);
+                _parts.Icon.SetSprite(_configurations.sprite);
             }
         }
 

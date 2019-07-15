@@ -13,6 +13,7 @@ public class AmountUIPart
     [SerializeField] private Text _amountText = null;
     [SerializeField] private Text _maxAmountText = null;
 
+    // Some local configurations that can be set in the inspector
     [SerializeField] private bool _showMaxAmount = false;
 
     public void SetAmount(int amount, int maxAmount = 0)

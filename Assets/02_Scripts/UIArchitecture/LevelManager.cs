@@ -2,16 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-using UIStyle = UI.LevelUIController.UIStyle;
+using UIConfigurations = UI.LevelUIController.UIConfigurations;
 
 public class LevelManager : MonoSingleton<LevelManager>
 {
-    [SerializeField] private UIStyle _style;
+    // Some global configuration that can be set in the inspector
+    [SerializeField] private UIConfigurations _configurations;
 
     private Observable<int> _level;
     private Observable<int> _maxLevel;
 
-    public UIStyle UIStyle { get { return _style; } }
+    public UIConfigurations UIConfigurations { get { return _configurations; } }
     public Observable<int> LevelRaw { get { return _level; } }
     public Observable<int> MaxLevelRaw { get { return _maxLevel; } }
 
