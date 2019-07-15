@@ -148,7 +148,7 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
---- !u!114 &507813148780982318
+--- !u!114 &6155636538646667374
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -157,17 +157,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 7584865283357140873}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3d5d5d9b50743d94593072898347c869, type: 3}
+  m_Script: {fileID: 11500000, guid: 34e4f099a7681d042b2a7c302b10eab7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _initOnStart: 1
   _levelText:
-    text: {fileID: 5855319191960689628}
-    _format: 1
+    _levelText: {fileID: 5855319191960689628}
+    _maxLevelText: {fileID: 0}
+    _format: 0
   _highlight:
-    gameObject: {fileID: 3932513549319519656}
+    _gameObject: {fileID: 3932513549319519656}
   _icon:
-    image: {fileID: 633640961211901748}
+    _image: {fileID: 633640961211901748}
 --- !u!1001 &5710953629025330781
 PrefabInstance:
   m_ObjectHideFlags: 0

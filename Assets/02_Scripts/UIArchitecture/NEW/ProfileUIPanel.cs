@@ -17,13 +17,8 @@ public class ProfileUIPanel : MonoBehaviour
     /// CONS: It require a new class for each variation
     /// </summary>
     [Header("Level Containers")]
-    [SerializeField] private LevelUIContainer_Text _levelTextContainer;
-    [SerializeField] private LevelUIContainer_Icon _levelIconContainer;
-    [SerializeField] private LevelUIContainer_Icon_Text _levelIconTextContainer;
-    [SerializeField] private LevelUIContainer_Highlight _levelHighlightContainer;
-    [SerializeField] private LevelUIContainer_Highlight_Text _levelHighlightTextContainer;
-    [SerializeField] private LevelUIContainer_Highlight_Icon _levelHighlightIconContainer;
-    [SerializeField] private LevelUIContainer_Full _levelFullContainer;
+    [SerializeField] private SimpleLevelUIContainer _simpleLevelContainer;
+    [SerializeField] private LevelUIContainer _fullLevelContainer;
 
     /// <summary>
     /// Alternative B: Parts

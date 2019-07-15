@@ -4,7 +4,7 @@ namespace UI
     /// <summary>
     /// [EXAMPLE]
     /// This is a SPECIFIC controller that handles the concept: LEVEL
-    /// UI Controllers have a subclass called Parts which contains ALL POSSIBLE PARTS
+    /// UI Controllers have a subclass called Parts which contains ALL POSSIBLE UI Parts
     /// UI Controllers should consider that the parts could be NULL.
     /// UI Controllers use injection to receive the parts
     /// [EXAMPLE]
@@ -18,6 +18,13 @@ namespace UI
             public GameObjectUIPart Highlight;
 
             public Parts() { }
+
+            public Parts(LevelTextsUIPart levelText, ImageUIPart icon, GameObjectUIPart highlight)
+            {
+                LevelText = levelText;
+                Icon = icon;
+                Highlight = highlight;
+            }
         }
 
         private Observable<int> _level;
