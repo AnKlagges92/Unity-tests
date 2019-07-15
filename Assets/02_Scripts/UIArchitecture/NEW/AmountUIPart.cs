@@ -24,7 +24,7 @@ public class AmountUIPart
         else if (_maxAmountText != null)
         {
             SetText(_amountText, amount);
-            SetText(_maxAmountText, maxAmount);
+            SetText(_maxAmountText, "/" + maxAmount);
         }
         else
         {
